@@ -1,0 +1,89 @@
+<x-admin-layout>
+    <x-slot name="header">Quản lý vai trò</x-slot>
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">Danh sách vai trò</h2>
+        @if(auth()->user()->hasPermission('role.create'))
+            <a href="{{ route('admin.roles.create') }}"
+               class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                + Thêm vai trò
+            </a>
+        @endif
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mô tả</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Người dùng</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hệ thống</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @forelse($roles as $role)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ $role->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs">{{ $role->code }}</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                {{ $role->description ?? '—' }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $role->users_count }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                @if($role->is_system)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Hệ thống
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                        Tùy chỉnh
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                @if(auth()->user()->hasPermission('permission.assign'))
+                                    <a href="{{ route('admin.roles.permissions.edit', $role) }}"
+                                       class="text-indigo-600 hover:text-indigo-900">Quyền</a>
+                                @endif
+
+                                @if(auth()->user()->hasPermission('role.update'))
+                                    <a href="{{ route('admin.roles.edit', $role) }}"
+                                       class="text-yellow-600 hover:text-yellow-900">Sửa</a>
+                                @endif
+
+                                @if(auth()->user()->hasPermission('role.delete') && !$role->is_system)
+                                    <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="inline"
+                                          onsubmit="return confirm('Bạn có chắc muốn xóa vai trò này?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900">Xóa</button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+                                Chưa có vai trò nào.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+            <div class="mt-4">
+                {{ $roles->links() }}
+            </div>
+        </div>
+    </div>
+</x-admin-layout>

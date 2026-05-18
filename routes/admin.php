@@ -1,0 +1,47 @@
+<?php
+
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Tất cả route trong file này đều có prefix 'admin' và middleware 'auth'.
+| Mỗi route kiểm tra quyền cụ thể thông qua middleware 'permission'.
+|
+*/
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+
+    // ─── Dashboard ─────────────────────────────────────────────────────
+    Route::get('/', DashboardController::class)->name('dashboard');
+
+    // ─── Quản lý vai trò ───────────────────────────────────────────────
+    Route::middleware('permission:role.view')->group(function () {
+        Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
+    });
+
+    Route::middleware('permission:role.create')->group(function () {
+        Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
+        Route::post('roles', [RoleController::class, 'store'])->name('roles.store');
+    });
+
+    Route::middleware('permission:role.update')->group(function () {
+        Route::get('roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+        Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    });
+
+    Route::middleware('permission:role.delete')->group(function () {
+        Route::delete('roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+    });
+
+    // ─── Gán quyền cho vai trò ─────────────────────────────────────────
+    Route::middleware('permission:permission.assign')->group(function () {
+        Route::get('roles/{role}/permissions', [PermissionController::class, 'edit'])->name('roles.permissions.edit');
+        Route::put('roles/{role}/permissions', [PermissionController::class, 'update'])->name('roles.permissions.update');
+    });
+});
