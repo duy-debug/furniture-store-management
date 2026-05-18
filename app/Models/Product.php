@@ -12,6 +12,11 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATUS_LABELS = [
+        'active' => 'Đang hiển thị',
+        'hidden' => 'Đã ẩn',
+    ];
+
     protected $fillable = [
         'category_id',
         'product_code',
@@ -47,5 +52,29 @@ class Product extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class)->orderBy('is_primary', 'desc')->orderBy('sort_order');
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function statusLabel(): string
+    {
+        return self::STATUS_LABELS[$this->status] ?? $this->status;
+    }
+
+    public function statusBadgeClasses(): string
+    {
+        return match ($this->status) {
+            'active' => 'bg-green-50 text-green-700',
+            'hidden' => 'bg-gray-50 text-gray-700',
+            default => 'bg-gray-50 text-gray-700',
+        };
+    }
+
+    public function hasTransactions(): bool
+    {
+        return $this->orderItems()->exists();
     }
 }

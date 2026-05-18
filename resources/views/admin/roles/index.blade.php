@@ -62,12 +62,15 @@
                                 @endif
 
                                 @if(auth()->user()->hasPermission('role.delete') && !$role->is_system)
-                                    <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="inline"
-                                          onsubmit="return confirm('Bạn có chắc muốn xóa vai trò này?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900">Xóa</button>
-                                    </form>
+                                    <x-confirm-delete-modal
+                                        :name="'delete-role-'.$role->id"
+                                        :action="route('admin.roles.destroy', $role)"
+                                        title="Xóa vai trò?"
+                                        message="Bạn có chắc muốn xóa vai trò này?"
+                                        trigger-label="Xóa"
+                                        confirm-label="Xóa"
+                                        trigger-class="text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-0 p-0"
+                                    />
                                 @endif
                             </td>
                         </tr>

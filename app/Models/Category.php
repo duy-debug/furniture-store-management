@@ -12,6 +12,11 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATUS_LABELS = [
+        'active' => 'Đang hiển thị',
+        'hidden' => 'Đã ẩn',
+    ];
+
     protected $fillable = [
         'parent_id',
         'name',
@@ -43,5 +48,29 @@ class Category extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function childrenCategories(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function statusLabel(): string
+    {
+        return self::STATUS_LABELS[$this->status] ?? $this->status;
+    }
+
+    public function statusBadgeClasses(): string
+    {
+        return match ($this->status) {
+            'active' => 'bg-green-50 text-green-700',
+            'hidden' => 'bg-gray-50 text-gray-700',
+            default => 'bg-gray-50 text-gray-700',
+        };
+    }
+
+    public function hasProducts(): bool
+    {
+        return $this->products()->exists();
     }
 }

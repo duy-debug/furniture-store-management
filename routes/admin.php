@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-
-    // ─── Dashboard ─────────────────────────────────────────────────────
     Route::get('/', DashboardController::class)->name('dashboard');
 
-    // ─── Quản lý vai trò ───────────────────────────────────────────────
     Route::middleware('permission:role.view')->group(function () {
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
     });
@@ -40,13 +39,57 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::delete('roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
     });
 
-    // ─── Gán quyền cho vai trò ─────────────────────────────────────────
     Route::middleware('permission:permission.assign')->group(function () {
         Route::get('roles/{role}/permissions', [PermissionController::class, 'edit'])->name('roles.permissions.edit');
         Route::put('roles/{role}/permissions', [PermissionController::class, 'update'])->name('roles.permissions.update');
     });
 
-    // â”€â”€â”€ Quáº£n lÃ½ Ä‘Æ¡n hÃ ng â”€â”€â”€
+    Route::middleware('permission:category.view')->group(function () {
+        Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+    });
+
+    Route::middleware('permission:category.create')->group(function () {
+        Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+    });
+
+    Route::middleware('permission:category.update')->group(function () {
+        Route::get('categories/{category}/edit', [CategoryController::class, 'edit'])->withTrashed()->name('categories.edit');
+        Route::put('categories/{category}', [CategoryController::class, 'update'])->withTrashed()->name('categories.update');
+    });
+
+    Route::middleware('permission:category.delete')->group(function () {
+        Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->withTrashed()->name('categories.destroy');
+        Route::patch('categories/{category}/restore', [CategoryController::class, 'restore'])->withTrashed()->name('categories.restore');
+    });
+
+    Route::middleware('permission:product.view')->group(function () {
+        Route::get('products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('products/{product}', [ProductController::class, 'show'])->whereNumber('product')->withTrashed()->name('products.show');
+    });
+
+    Route::middleware('permission:product.create')->group(function () {
+        Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+        Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    });
+
+    Route::middleware('permission:product.update')->group(function () {
+        Route::get('products/{product}/edit', [ProductController::class, 'edit'])->whereNumber('product')->withTrashed()->name('products.edit');
+        Route::put('products/{product}', [ProductController::class, 'update'])->whereNumber('product')->withTrashed()->name('products.update');
+    });
+
+    Route::middleware('permission:product.delete')->group(function () {
+        Route::delete('products/{product}', [ProductController::class, 'destroy'])->whereNumber('product')->withTrashed()->name('products.destroy');
+        Route::patch('products/{product}/restore', [ProductController::class, 'restore'])->whereNumber('product')->withTrashed()->name('products.restore');
+    });
+
+    Route::middleware('permission:product.manage_image')->group(function () {
+        Route::get('products/{product}/images', [ProductController::class, 'images'])->whereNumber('product')->withTrashed()->name('products.images');
+        Route::post('products/{product}/images', [ProductController::class, 'storeImages'])->whereNumber('product')->withTrashed()->name('products.images.store');
+        Route::patch('products/{product}/images/{image}/primary', [ProductController::class, 'setPrimaryImage'])->whereNumber('product')->whereNumber('image')->withTrashed()->name('products.images.primary');
+        Route::delete('products/{product}/images/{image}', [ProductController::class, 'destroyImage'])->whereNumber('product')->whereNumber('image')->withTrashed()->name('products.images.destroy');
+    });
+
     Route::middleware('permission:order.view')->group(function () {
         Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
