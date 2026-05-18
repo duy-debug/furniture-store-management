@@ -13,6 +13,10 @@
                    class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
                     Lịch sử đơn hàng
                 </a>
+                <a href="{{ route('design-requests.create') }}"
+                   class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                    Gửi yêu cầu thiết kế
+                </a>
                 <a href="{{ route('cart.index') }}"
                    class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition">
                     Xem giỏ hàng
@@ -45,6 +49,10 @@
                             <a href="{{ route('products.index') }}"
                                class="inline-flex items-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100 transition">
                                 Khám phá sản phẩm
+                            </a>
+                            <a href="{{ route('design-requests.create') }}"
+                               class="inline-flex items-center rounded-md border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15 transition">
+                                Gửi yêu cầu thiết kế
                             </a>
                             <a href="{{ route('checkout.index') }}"
                                class="inline-flex items-center rounded-md border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15 transition">
@@ -101,7 +109,7 @@
                 </div>
             </div>
 
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
                 <a href="{{ route('products.index') }}"
                    class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-lg">
                     <div class="inline-flex rounded-2xl bg-amber-50 p-3 text-amber-600">
@@ -165,6 +173,22 @@
                         Chỉnh sửa hồ sơ →
                     </p>
                 </a>
+
+                <a href="{{ route('design-requests.create') }}"
+                   class="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-lg">
+                    <div class="inline-flex rounded-2xl bg-pink-50 p-3 text-pink-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8m4 8a8 8 0 100-16 8 8 0 000 16z"/>
+                        </svg>
+                    </div>
+                    <h3 class="mt-4 text-lg font-semibold text-gray-900">Thiết kế nội thất</h3>
+                    <p class="mt-2 text-sm leading-6 text-gray-500">
+                        Gửi yêu cầu thiết kế cho không gian của bạn và theo dõi tiến độ ngay trong hệ thống.
+                    </p>
+                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                        Tạo yêu cầu →
+                    </p>
+                </a>
             </div>
 
             <div class="grid gap-6 lg:grid-cols-[1.15fr,0.85fr]">
@@ -208,10 +232,20 @@
                             Theo tài liệu chức năng, khách hàng còn có thể gửi yêu cầu thiết kế nội thất và xem lại các yêu cầu của mình.
                         </p>
                         <div class="mt-5 rounded-2xl border border-white/10 bg-white/10 p-4">
-                            <p class="text-sm font-medium text-white">Gợi ý bổ sung</p>
+                            <p class="text-sm font-medium text-white">Thiết kế nội thất</p>
                             <p class="mt-1 text-sm text-slate-300">
-                                Khi bạn triển khai phần design request, có thể đặt một card riêng ngay tại đây để mở form gửi yêu cầu.
+                                Bạn có thể gửi yêu cầu thiết kế theo đúng nhu cầu của từng không gian và xem lại toàn bộ yêu cầu đã gửi.
                             </p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="{{ route('design-requests.create') }}"
+                                   class="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 hover:bg-slate-100">
+                                    Gửi yêu cầu
+                                </a>
+                                <a href="{{ route('design-requests.index') }}"
+                                   class="inline-flex items-center rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10">
+                                    Xem yêu cầu của tôi
+                                </a>
+                            </div>
                         </div>
                     </div>
 

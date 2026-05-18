@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Customer\DesignRequestController;
 use App\Http\Controllers\Customer\CheckoutController;
 use App\Http\Controllers\Customer\OrderController;
 use App\Http\Controllers\Customer\CartController;
@@ -48,6 +49,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'permission:design_request.create'])->group(function () {
+    Route::get('/design-requests/create', [DesignRequestController::class, 'create'])->name('design-requests.create');
+    Route::post('/design-requests', [DesignRequestController::class, 'store'])->name('design-requests.store');
+});
+
+Route::middleware(['auth', 'permission:design_request.own_view'])->group(function () {
+    Route::get('/design-requests', [DesignRequestController::class, 'index'])->name('design-requests.index');
+});
+
+Route::middleware(['auth', 'permission:design_request.own_detail,design_request.detail'])->group(function () {
+    Route::get('/design-requests/{designRequest}', [DesignRequestController::class, 'show'])->name('design-requests.show');
 });
 
 Route::middleware(['auth', 'permission:order.create'])->group(function () {

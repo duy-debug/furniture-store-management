@@ -24,6 +24,11 @@
                         </x-nav-link>
                     @endauth
                     @auth
+                        <x-nav-link :href="route('design-requests.index')" :active="request()->routeIs('design-requests.*')">
+                            {{ __('Thiết kế') }}
+                        </x-nav-link>
+                    @endauth
+                    @auth
                         <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
                             {{ __('Giỏ hàng') }}
                         </x-nav-link>
@@ -95,6 +100,11 @@
             @auth
                 <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                     {{ __('Đơn hàng') }}
+                </x-responsive-nav-link>
+            @endauth
+            @auth
+                <x-responsive-nav-link :href="route('design-requests.index')" :active="request()->routeIs('design-requests.*')">
+                    {{ __('Thiết kế') }}
                 </x-responsive-nav-link>
             @endauth
             @auth

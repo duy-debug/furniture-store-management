@@ -11,6 +11,29 @@ class DesignRequest extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const SPACE_TYPE_LABELS = [
+        'living_room' => 'Phòng khách',
+        'bedroom' => 'Phòng ngủ',
+        'kitchen' => 'Nhà bếp',
+        'whole_house' => 'Toàn bộ căn nhà',
+        'office' => 'Văn phòng',
+        'cafe' => 'Quán cafe',
+        'apartment' => 'Căn hộ',
+        'other' => 'Khác',
+    ];
+
+    public const STATUS_LABELS = [
+        'new' => 'Mới',
+        'contacting' => 'Đang liên hệ',
+        'surveyed' => 'Đã khảo sát',
+        'designing' => 'Đang thiết kế',
+        'sent_design' => 'Đã gửi bản thiết kế',
+        'approved' => 'Đã duyệt',
+        'constructing' => 'Đang thi công',
+        'completed' => 'Hoàn thành',
+        'cancelled' => 'Đã hủy',
+    ];
+
     protected $fillable = [
         'user_id',
         'assigned_staff_id',
@@ -61,5 +84,31 @@ class DesignRequest extends Model
     public function assignedStaff(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_staff_id')->withTrashed();
+    }
+
+    public function spaceTypeLabel(): string
+    {
+        return self::SPACE_TYPE_LABELS[$this->space_type] ?? $this->space_type;
+    }
+
+    public function statusLabel(): string
+    {
+        return self::STATUS_LABELS[$this->status] ?? $this->status;
+    }
+
+    public function statusBadgeClasses(): string
+    {
+        return match ($this->status) {
+            'new' => 'bg-sky-50 text-sky-700',
+            'contacting' => 'bg-blue-50 text-blue-700',
+            'surveyed' => 'bg-indigo-50 text-indigo-700',
+            'designing' => 'bg-violet-50 text-violet-700',
+            'sent_design' => 'bg-emerald-50 text-emerald-700',
+            'approved' => 'bg-green-50 text-green-700',
+            'constructing' => 'bg-amber-50 text-amber-700',
+            'completed' => 'bg-emerald-50 text-emerald-700',
+            'cancelled' => 'bg-red-50 text-red-700',
+            default => 'bg-gray-50 text-gray-700',
+        };
     }
 }
