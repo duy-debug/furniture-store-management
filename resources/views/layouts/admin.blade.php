@@ -15,6 +15,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        {{-- Toast Notification --}}
+        <x-toast-notification />
+
         <div x-data="{ sidebarOpen: false }" class="min-h-screen bg-gray-100">
 
             {{-- Mobile sidebar overlay --}}
@@ -205,19 +208,6 @@
 
                 {{-- Page Content --}}
                 <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-x-auto">
-                    {{-- Flash Messages --}}
-                    @if(session('success'))
-                        <div class="mb-4 p-4 bg-green-50 border border-green-200 text-green-700 rounded-md">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-                    @if(session('error'))
-                        <div class="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-md">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
                     {{ $slot }}
                 </main>
             </div>

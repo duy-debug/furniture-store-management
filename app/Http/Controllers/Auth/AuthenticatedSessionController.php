@@ -21,6 +21,7 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     * Redirect theo role: admin/staff → /admin, customer → /
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -28,7 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // Admin hoặc Staff → redirect về admin dashboard
+        if ($user->hasRole(['admin', 'staff'])) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        // Customer → redirect về customer dashboard
+        return redirect('/dashboard');
     }
 
     /**

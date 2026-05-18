@@ -63,10 +63,10 @@ Khách vãng lai đăng ký tài khoản khách hàng. Validate: họ tên, emai
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | Laravel Breeze đã có sẵn, cần customize thêm phone |
+| Ghi chú | Thêm phone field, gán role customer tự động |
 
 ---
 
@@ -76,10 +76,10 @@ Khách vãng lai đăng ký tài khoản khách hàng. Validate: họ tên, emai
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | Cần customize Breeze để hỗ trợ login bằng phone |
+| Ghi chú | Login bằng email/phone, check locked, redirect theo role, cập nhật last_login_at |
 
 ---
 
@@ -89,10 +89,10 @@ Xóa session, chuyển về trang chủ hoặc trang đăng nhập.
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | Breeze đã có sẵn |
+| Ghi chú | Redirect về / sau logout |
 
 ---
 
@@ -102,10 +102,10 @@ Người dùng đã đăng nhập cập nhật: họ tên, số điện thoại,
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | |
+| Ghi chú | Đầy đủ fields: phone, birthday, gender, address, contact method, notes |
 
 ---
 
@@ -115,10 +115,10 @@ Hiển thị sản phẩm đang active cho khách. Hỗ trợ: phân trang, sắ
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | |
+| Ghi chú | ProductController@index, grid + sidebar filter, phân trang 12/trang |
 
 ---
 
@@ -128,10 +128,10 @@ Hiển thị đầy đủ thông tin sản phẩm: mã, tên, ảnh (gallery), m
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | |
+| Ghi chú | ProductController@show, gallery Alpine.js, related products |
 
 ---
 
@@ -141,10 +141,10 @@ Tìm kiếm theo: tên, mã sản phẩm, danh mục, chất liệu, mô tả, k
 
 | Thông tin | Chi tiết |
 |-----------|----------|
-| Trạng thái | ⬜ Chưa làm |
+| Trạng thái | ✅ Hoàn thành |
 | Người thực hiện | |
 | Deadline | |
-| Ghi chú | |
+| Ghi chú | Tích hợp trong ProductController@index, tìm theo tên/mã/mô tả/chất liệu + lọc giá |
 
 ---
 
@@ -478,8 +478,8 @@ Trang tổng quan cho admin/nhân viên: tổng đơn hàng, đơn mới, doanh 
 | Nhóm chức năng | Số task | Hoàn thành |
 |----------------|---------|------------|
 | Cơ sở hạ tầng (DB, Models, Seeders, Middleware) | 4 | 4/4 |
-| Xác thực & Tài khoản | 4 | 0/4 |
-| Sản phẩm (Public) | 3 | 0/3 |
+| Xác thực & Tài khoản | 4 | 4/4 |
+| Sản phẩm (Public) | 3 | 3/3 |
 | Giỏ hàng | 2 | 0/2 |
 | Đặt hàng (Khách hàng) | 3 | 0/3 |
 | Quản lý đơn hàng (Admin) | 3 | 0/3 |
@@ -490,4 +490,4 @@ Trang tổng quan cho admin/nhân viên: tổng đơn hàng, đơn mới, doanh 
 | Phân quyền (Admin) | 2 | 2/2 |
 | Yêu cầu thiết kế | 4 | 0/4 |
 | Giao diện & Layout | 3 | 3/3 |
-| **Tổng** | **36** | **9/36** |
+| **Tổng** | **36** | **16/36** |

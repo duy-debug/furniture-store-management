@@ -28,7 +28,7 @@
                     {{-- Navigation Links --}}
                     <nav class="hidden md:flex items-center space-x-8">
                         <a href="/" class="text-sm font-medium text-gray-900 hover:text-indigo-600 transition">Trang chủ</a>
-                        <a href="#products" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition">Sản phẩm</a>
+                        <a href="{{ route('products.index') }}" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition">Sản phẩm</a>
                         <a href="#categories" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition">Danh mục</a>
                         <a href="#contact" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition">Liên hệ</a>
                     </nav>
@@ -91,41 +91,24 @@
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="group text-center">
+                    @forelse($categories as $cat)
+                    <a href="{{ route('products.index', ['category' => $cat->id]) }}" class="group text-center">
                         <div class="bg-gray-100 rounded-lg p-8 mb-3 group-hover:bg-indigo-50 transition">
-                            <svg class="h-12 w-12 mx-auto text-gray-400 group-hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                            </svg>
+                            @if($cat->image_path)
+                                <img src="{{ asset('storage/' . $cat->image_path) }}" alt="{{ $cat->name }}" class="h-12 w-12 mx-auto object-contain">
+                            @else
+                                <svg class="h-12 w-12 mx-auto text-gray-400 group-hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                            @endif
                         </div>
-                        <h3 class="font-medium text-gray-900">Phòng khách</h3>
+                        <h3 class="font-medium text-gray-900">{{ $cat->name }}</h3>
+                    </a>
+                    @empty
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-gray-500">Chưa có danh mục nào.</p>
                     </div>
-
-                    <div class="group text-center">
-                        <div class="bg-gray-100 rounded-lg p-8 mb-3 group-hover:bg-indigo-50 transition">
-                            <svg class="h-12 w-12 mx-auto text-gray-400 group-hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-medium text-gray-900">Phòng ngủ</h3>
-                    </div>
-
-                    <div class="group text-center">
-                        <div class="bg-gray-100 rounded-lg p-8 mb-3 group-hover:bg-indigo-50 transition">
-                            <svg class="h-12 w-12 mx-auto text-gray-400 group-hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-medium text-gray-900">Văn phòng</h3>
-                    </div>
-
-                    <div class="group text-center">
-                        <div class="bg-gray-100 rounded-lg p-8 mb-3 group-hover:bg-indigo-50 transition">
-                            <svg class="h-12 w-12 mx-auto text-gray-400 group-hover:text-indigo-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-medium text-gray-900">Nhà bếp</h3>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>
@@ -139,28 +122,17 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {{-- Placeholder products - sẽ được thay bằng dữ liệu thật --}}
-                    @for($i = 1; $i <= 4; $i++)
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group">
-                        <div class="aspect-square bg-gray-100 flex items-center justify-center">
-                            <svg class="h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
+                    @forelse($featuredProducts as $product)
+                        @include('products._card', ['product' => $product])
+                    @empty
+                        <div class="col-span-full text-center py-12">
+                            <p class="text-gray-500">Chưa có sản phẩm nào.</p>
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-sm font-medium text-gray-900 mb-1">Sản phẩm mẫu {{ $i }}</h3>
-                            <p class="text-xs text-gray-500 mb-2">Danh mục</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm font-semibold text-indigo-600">{{ number_format(rand(1, 50) * 100000, 0, ',', '.') }}đ</span>
-                                <span class="text-xs text-green-600 font-medium">Còn hàng</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endfor
+                    @endforelse
                 </div>
 
                 <div class="text-center mt-10">
-                    <a href="#"
+                    <a href="{{ route('products.index') }}"
                        class="inline-flex items-center px-6 py-3 bg-white border border-gray-300 rounded-md font-semibold text-sm text-gray-700 uppercase tracking-widest hover:bg-gray-50 transition">
                         Xem tất cả sản phẩm
                     </a>
