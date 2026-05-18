@@ -17,6 +17,9 @@
         @if(session('error'))
             addToast('error', '{{ session('error') }}');
         @endif
+        @if($errors->any())
+            addToast('error', @json($errors->first()));
+        @endif
         @if(session('status') === 'profile-updated')
             addToast('success', 'Thông tin cá nhân đã được cập nhật thành công!');
         @endif

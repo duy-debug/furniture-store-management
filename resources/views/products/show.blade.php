@@ -119,9 +119,14 @@
                         {{-- Add to Cart --}}
                         @auth
                             @if($product->stock_quantity > 0)
-                                <button class="w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition text-sm uppercase tracking-widest">
-                                    Thêm vào giỏ hàng
-                                </button>
+                                <form method="POST" action="{{ route('cart.items.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition text-sm uppercase tracking-widest">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </form>
                             @else
                                 <button disabled class="w-full px-6 py-3 bg-gray-200 text-gray-400 font-semibold rounded-md cursor-not-allowed text-sm uppercase tracking-widest">
                                     Hết hàng

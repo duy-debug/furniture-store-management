@@ -39,4 +39,11 @@ class Cart extends Model
     {
         return $this->hasMany(CartItem::class);
     }
+
+    public function syncTotals(): void
+    {
+        $this->item_count = (int) $this->items()->sum('quantity');
+        $this->subtotal = round((float) $this->items()->sum('line_total'), 2);
+        $this->save();
+    }
 }
