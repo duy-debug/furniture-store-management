@@ -120,9 +120,9 @@
                             <a href="{{ route('products.index') }}" class="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-semibold text-gray-700 hover:bg-gray-200">
                                 Tiếp tục mua sắm
                             </a>
-                            <button type="button" class="block w-full rounded-md bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-700">
+                            <a href="{{ route('checkout.index') }}" class="block w-full rounded-md bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-700">
                                 Thanh toán
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

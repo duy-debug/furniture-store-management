@@ -19,6 +19,11 @@
                         {{ __('Sản phẩm') }}
                     </x-nav-link>
                     @auth
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                            {{ __('Đơn hàng') }}
+                        </x-nav-link>
+                    @endauth
+                    @auth
                         <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
                             {{ __('Giỏ hàng') }}
                         </x-nav-link>
@@ -87,6 +92,11 @@
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
                 {{ __('Sản phẩm') }}
             </x-responsive-nav-link>
+            @auth
+                <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                    {{ __('Đơn hàng') }}
+                </x-responsive-nav-link>
+            @endauth
             @auth
                 <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
                     {{ __('Giỏ hàng') }}
