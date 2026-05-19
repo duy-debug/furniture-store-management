@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.active'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
     Route::middleware('permission:role.view')->group(function () {
@@ -42,6 +43,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::middleware('permission:permission.assign')->group(function () {
         Route::get('roles/{role}/permissions', [PermissionController::class, 'edit'])->name('roles.permissions.edit');
         Route::put('roles/{role}/permissions', [PermissionController::class, 'update'])->name('roles.permissions.update');
+    });
+
+    Route::middleware('permission:customer.view')->group(function () {
+        Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    });
+
+    Route::middleware('permission:customer.detail')->group(function () {
+        Route::get('customers/{customer}', [CustomerController::class, 'show'])->whereNumber('customer')->name('customers.show');
+    });
+
+    Route::middleware('permission:customer.lock')->group(function () {
+        Route::patch('customers/{customer}/status', [CustomerController::class, 'updateStatus'])->whereNumber('customer')->name('customers.status');
     });
 
     Route::middleware('permission:category.view')->group(function () {

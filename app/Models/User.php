@@ -42,6 +42,11 @@ class User extends Authenticatable
         'last_login_at',
     ];
 
+    public const STATUS_LABELS = [
+        'active' => 'Đang hoạt động',
+        'locked' => 'Đang bị khóa',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -88,6 +93,39 @@ class User extends Authenticatable
     public function designRequests(): HasMany
     {
         return $this->hasMany(DesignRequest::class);
+    }
+
+    public function isLocked(): bool
+    {
+        return $this->status === 'locked';
+    }
+
+    public function statusLabel(): string
+    {
+        return self::STATUS_LABELS[$this->status] ?? $this->status;
+    }
+
+    public function statusBadgeClasses(): string
+    {
+        return match ($this->status) {
+            'active' => 'bg-green-50 text-green-700',
+            'locked' => 'bg-red-50 text-red-700',
+            default => 'bg-gray-50 text-gray-700',
+        };
+    }
+
+    public function fullAddress(): string
+    {
+        return collect([
+            $this->address_line_1,
+            $this->address_line_2,
+            $this->ward,
+            $this->district,
+            $this->province,
+            $this->postal_code,
+        ])
+            ->filter()
+            ->implode(', ');
     }
 
     public function hasRole(string|array $roles): bool
