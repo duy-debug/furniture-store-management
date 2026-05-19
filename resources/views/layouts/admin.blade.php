@@ -36,7 +36,7 @@
 
                 {{-- Sidebar Header --}}
                 <div class="flex items-center justify-between h-16 px-4 border-b border-gray-200">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
+                    <a href="{{ url('/') }}" class="flex items-center gap-2" title="Về trang chủ">
                         <x-application-logo class="block h-8 w-auto fill-current text-gray-800" />
                         <span class="font-semibold text-gray-800 text-sm">Thông Mai</span>
                     </a>
