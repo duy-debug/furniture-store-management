@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,24 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
     Route::middleware('permission:permission.assign')->group(function () {
         Route::get('roles/{role}/permissions', [PermissionController::class, 'edit'])->name('roles.permissions.edit');
         Route::put('roles/{role}/permissions', [PermissionController::class, 'update'])->name('roles.permissions.update');
+    });
+
+    Route::middleware('permission:user.view')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+    });
+
+    Route::middleware('permission:user.create')->group(function () {
+        Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+    });
+
+    Route::middleware('permission:user.update')->group(function () {
+        Route::get('users/{user}/edit', [UserController::class, 'edit'])->whereNumber('user')->withTrashed()->name('users.edit');
+        Route::put('users/{user}', [UserController::class, 'update'])->whereNumber('user')->withTrashed()->name('users.update');
+    });
+
+    Route::middleware('permission:user.lock')->group(function () {
+        Route::patch('users/{user}/status', [UserController::class, 'toggleLock'])->whereNumber('user')->withTrashed()->name('users.status');
     });
 
     Route::middleware('permission:customer.view')->group(function () {
