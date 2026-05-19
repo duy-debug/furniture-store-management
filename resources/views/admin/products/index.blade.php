@@ -122,9 +122,9 @@
                                                     <x-confirm-delete-modal
                                                         :name="'delete-product-'.$product->id"
                                                         :action="route('admin.products.destroy', $product)"
-                                                        title="Xóa/Ẩn sản phẩm?"
-                                                        message="Bạn chắc chắn muốn xóa hoặc ẩn sản phẩm này?"
-                                                        trigger-label="Xóa/Ẩn"
+                                                        title="Xóa sản phẩm?"
+                                                        message="Bạn chắc chắn muốn xóa sản phẩm này?"
+                                                        trigger-label="Xóa"
                                                         confirm-label="Xác nhận"
                                                         trigger-class="text-sm font-medium text-red-600 hover:text-red-700 bg-transparent border-0 p-0"
                                                     />
