@@ -104,7 +104,7 @@
                                                 <a href="{{ route('admin.products.images', $product) }}" class="text-sm font-medium text-emerald-600 hover:text-emerald-700">Ảnh</a>
                                             @endif
                                             @if(auth()->user()->hasPermission('product.update'))
-                                                <a href="{{ route('admin.products.edit', $product) }}" class="text-sm font-medium text-gray-700 hover:text-gray-900">Sửa</a>
+                                                <a href="{{ route('admin.products.edit', $product) }}" class="text-sm font-medium text-yellow-600 hover:text-yellow-900">Sửa</a>
                                             @endif
                                             @if(auth()->user()->hasPermission('product.delete'))
                                                 @if($product->trashed())

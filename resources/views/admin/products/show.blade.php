@@ -15,8 +15,8 @@
                     </a>
                 @endif
                 @if(auth()->user()->hasPermission('product.update'))
-                    <a href="{{ route('admin.products.edit', $product) }}" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
-                        Cập nhật
+                    <a href="{{ route('admin.products.edit', $product) }}" class="inline-flex items-center rounded-xl bg-yellow-600 px-4 py-2 text-sm font-semibold text-white hover:bg-yellow-700">
+                        Sửa sản phẩm
                     </a>
                 @endif
                 <a href="{{ route('admin.products.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">

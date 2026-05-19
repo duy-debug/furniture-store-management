@@ -91,7 +91,7 @@
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex flex-wrap justify-end gap-2">
                                             @if(auth()->user()->hasPermission('category.update'))
-                                                <a href="{{ route('admin.categories.edit', $category) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                                                <a href="{{ route('admin.categories.edit', $category) }}" class="text-sm font-medium text-yellow-600 hover:text-yellow-900">
                                                     Sửa
                                                 </a>
                                             @endif
