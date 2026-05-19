@@ -100,45 +100,47 @@
                 </div>
             @else
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full table-fixed divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Mã</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Khách hàng</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Không gian</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngân sách</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngày gửi</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Trạng thái</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">NV phụ trách</th>
-                                <th class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">Thao tác</th>
+                                <th class="w-28 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Mã</th>
+                                <th class="w-48 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Khách hàng</th>
+                                <th class="w-40 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Không gian</th>
+                                <th class="w-28 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngân sách</th>
+                                <th class="w-32 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngày gửi</th>
+                                <th class="w-32 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Trạng thái</th>
+                                <th class="w-36 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">NV phụ trách</th>
+                                <th class="w-28 px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
                             @foreach($designRequests as $designRequest)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm font-semibold text-gray-900">{{ $designRequest->request_code }}</div>
-                                        <div class="mt-1 text-xs text-gray-500">#{{ $designRequest->id }}</div>
+                                    <td class="px-6 py-4 align-top">
+                                        <div class="truncate text-sm font-semibold text-gray-900">{{ $designRequest->request_code }}</div>
+                                        <div class="mt-1 truncate text-xs text-gray-500">#{{ $designRequest->id }}</div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-700">
-                                        <div class="font-medium text-gray-900">{{ $designRequest->customer_name }}</div>
-                                        <div class="mt-1 text-gray-500">{{ $designRequest->customer_phone }}</div>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-700">
+                                        <div class="truncate font-medium text-gray-900" title="{{ $designRequest->customer_name }}">{{ $designRequest->customer_name }}</div>
+                                        <div class="mt-1 truncate text-gray-500" title="{{ $designRequest->customer_phone }}">{{ $designRequest->customer_phone }}</div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">
-                                        <div class="font-medium text-gray-900">{{ $designRequest->spaceTypeLabel() }}</div>
-                                        <div class="mt-1 text-xs text-gray-500">{{ number_format($designRequest->space_area, 2, ',', '.') }} m²</div>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">
+                                        <div class="truncate font-medium text-gray-900" title="{{ $designRequest->spaceTypeLabel() }}">{{ $designRequest->spaceTypeLabel() }}</div>
+                                        <div class="mt-1 truncate text-xs text-gray-500">{{ number_format($designRequest->space_area, 2, ',', '.') }} m²</div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm font-semibold text-gray-900">{{ number_format($designRequest->budget_amount, 0, ',', '.') }} đ</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">{{ $designRequest->created_at?->format('d/m/Y H:i') }}</td>
-                                    <td class="px-6 py-4 text-sm">
+                                    <td class="px-6 py-4 align-top text-sm font-semibold text-gray-900">{{ number_format($designRequest->budget_amount, 0, ',', '.') }} đ</td>
+                                    <td class="px-6 py-4 align-top text-sm text-gray-600">{{ $designRequest->created_at?->format('d/m/Y H:i') }}</td>
+                                    <td class="px-6 py-4 align-top text-sm">
                                         <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $designRequest->statusBadgeClasses() }}">
                                             {{ $designRequest->statusLabel() }}
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-700">
-                                        {{ $designRequest->assignedStaff?->name ?? 'Chưa phân công' }}
+                                    <td class="px-6 py-4 align-top text-sm text-gray-700">
+                                        <div class="truncate" title="{{ $designRequest->assignedStaff?->name ?? 'Chưa phân công' }}">
+                                            {{ $designRequest->assignedStaff?->name ?? 'Chưa phân công' }}
+                                        </div>
                                     </td>
-                                    <td class="px-6 py-4 text-right">
+                                    <td class="px-6 py-4 align-top text-right whitespace-nowrap">
                                         <a href="{{ route('admin.design-requests.show', $designRequest) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
                                             Xem chi tiết
                                         </a>

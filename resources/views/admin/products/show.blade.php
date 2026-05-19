@@ -143,16 +143,16 @@
                             </div>
                         @endif
                     </div>
-                </div>`r`n`r`n                @if(auth()->user()->hasPermission('product.delete'))
+                </div>@if(auth()->user()->hasPermission('product.delete'))
                     <div class="rounded-2xl border border-red-200 bg-red-50 p-6">
                         <h3 class="text-lg font-semibold text-red-800">
-                            {{ $product->trashed() ? 'Khôi phục sản phẩm' : 'Xóa / ẩn sản phẩm' }}
+                            {{ $product->trashed() ? 'Khôi phục sản phẩm' : 'Xóa sản phẩm' }}
                         </h3>
                         <p class="mt-2 text-sm text-red-700">
                             @if($product->trashed())
                                 Sản phẩm này đang ở trạng thái xóa mềm. Bạn có thể khôi phục lại để hiển thị trong danh sách quản trị.
                             @else
-                                Nếu sản phẩm chưa có giao dịch, hệ thống sẽ xóa mềm. Nếu đã có đơn, hệ thống sẽ chuyển sang trạng thái hidden.
+                                Nếu sản phẩm chưa có giao dịch, hệ thống sẽ xóa mềm. Nếu đã có đơn, hệ thống sẽ xử lý theo logic xóa hiện tại.
                             @endif
                         </p>
                         <div class="mt-4">
@@ -171,9 +171,9 @@
                                 <x-confirm-delete-modal
                                     :name="'delete-product-detail-'.$product->id"
                                     :action="route('admin.products.destroy', $product)"
-                                    title="Xóa/ẩn sản phẩm?"
-                                    message="Bạn chắc chắn muốn xóa hoặc ẩn sản phẩm này?"
-                                    trigger-label="Xóa / ẩn"
+                                    title="Xóa sản phẩm?"
+                                    message="Bạn chắc chắn muốn xóa sản phẩm này?"
+                                    trigger-label="Xóa"
                                     confirm-label="Xác nhận"
                                     class="w-full rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 justify-center"
                                 />
