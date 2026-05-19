@@ -13,7 +13,7 @@
                     Quay lại danh sách
                 </a>
                 @if($order->status !== 'completed' && $order->status !== 'cancelled' && $order->status !== 'returned')
-                    <a href="#update-status" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <a href="#update-status" class="primary-button px-4 py-2">
                         Cập nhật trạng thái
                     </a>
                 @endif
@@ -182,7 +182,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                            <button type="submit" class="primary-button w-full justify-center">
                                 Lưu trạng thái
                             </button>
                         </form>

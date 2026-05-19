@@ -31,14 +31,14 @@
                 </div>
 
                 <div class="lg:col-span-5 flex flex-wrap gap-3">
-                    <button type="submit" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <button type="submit" class="primary-button">
                         Lọc dữ liệu
                     </button>
-                    <a href="{{ route('admin.products.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.products.index') }}" class="secondary-button">
                         Xóa bộ lọc
                     </a>
                     @if(auth()->user()->hasPermission('product.create'))
-                        <a href="{{ route('admin.products.create') }}" class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
+                        <a href="{{ route('admin.products.create') }}" class="primary-button">
                             Thêm sản phẩm
                         </a>
                     @endif
@@ -46,10 +46,10 @@
             </form>
         </div>
 
-        <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
-            <div class="border-b border-gray-200 px-6 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Danh sách sản phẩm</h3>
-                <p class="mt-1 text-sm text-gray-500">Hiển thị cả sản phẩm đã ẩn hoặc đã xóa mềm để admin theo dõi.</p>
+        <div class="overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+            <div class="border-b border-slate-200 px-6 py-4">
+                <h3 class="text-lg font-semibold text-slate-900">Danh sách sản phẩm</h3>
+                <p class="mt-1 text-sm text-slate-500">Hiển thị cả sản phẩm đã ẩn hoặc đã xóa mềm để admin theo dõi.</p>
             </div>
 
             @if($products->isEmpty())

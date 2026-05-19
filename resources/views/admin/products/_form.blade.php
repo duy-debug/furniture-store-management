@@ -137,7 +137,7 @@
         <a href="{{ route('admin.products.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
             Hủy
         </a>
-        <button type="submit" class="inline-flex items-center rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+        <button type="submit" class="primary-button px-5 py-2.5">
             {{ $isEdit ? 'Cập nhật sản phẩm' : 'Tạo sản phẩm' }}
         </button>
     </div>

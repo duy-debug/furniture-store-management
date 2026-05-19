@@ -168,7 +168,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                            <button type="submit" class="primary-button w-full justify-center">
                                 Lưu cập nhật
                             </button>
                         </form>

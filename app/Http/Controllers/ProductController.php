@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,7 @@ class ProductController extends Controller
      * Danh sách sản phẩm public.
      * Hỗ trợ: phân trang, sắp xếp, lọc danh mục, khoảng giá, tồn kho, tìm kiếm.
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $query = Product::query()
             ->where('status', 'active')
@@ -22,9 +23,9 @@ class ProductController extends Controller
         if ($search = $request->input('search')) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('product_code', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('material', 'like', "%{$search}%");
+                    ->orWhere('product_code', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('material', 'like', "%{$search}%");
             });
         }
 
@@ -37,6 +38,7 @@ class ProductController extends Controller
         if ($minPrice = $request->input('min_price')) {
             $query->where('price', '>=', $minPrice);
         }
+
         if ($maxPrice = $request->input('max_price')) {
             $query->where('price', '<=', $maxPrice);
         }
@@ -63,13 +65,15 @@ class ProductController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'categories') + [
+            'layout' => $this->resolvePublicLayout($request),
+        ]);
     }
 
     /**
      * Chi tiết sản phẩm.
      */
-    public function show(string $slug)
+    public function show(Request $request, string $slug): View
     {
         $product = Product::where('slug', $slug)
             ->where('status', 'active')
@@ -84,6 +88,19 @@ class ProductController extends Controller
             ->take(4)
             ->get();
 
-        return view('products.show', compact('product', 'relatedProducts'));
+        return view('products.show', compact('product', 'relatedProducts') + [
+            'layout' => $this->resolvePublicLayout($request),
+        ]);
+    }
+
+    private function resolvePublicLayout(Request $request): string
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            return 'public-layout';
+        }
+
+        return $user->hasRole(['admin', 'staff']) ? 'public-layout' : 'app-layout';
     }
 }

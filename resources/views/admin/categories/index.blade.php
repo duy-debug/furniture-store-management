@@ -2,7 +2,7 @@
     <x-slot name="header">Quản lý danh mục</x-slot>
 
     <div class="space-y-6">
-        <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
+        <div class="rounded-lg bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <form method="GET" action="{{ route('admin.categories.index') }}" class="grid gap-4 lg:grid-cols-4">
                 <div class="lg:col-span-2">
                     <label class="mb-2 block text-sm font-medium text-gray-700">Tìm kiếm</label>
@@ -21,17 +21,17 @@
                 </div>
 
                 <div class="flex items-end gap-3">
-                    <button type="submit" class="inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <button type="submit" class="primary-button w-full justify-center">
                         Lọc dữ liệu
                     </button>
                 </div>
 
                 <div class="lg:col-span-4 flex flex-wrap gap-3">
-                    <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.categories.index') }}" class="secondary-button">
                         Xóa bộ lọc
                     </a>
                     @if(auth()->user()->hasPermission('category.create'))
-                        <a href="{{ route('admin.categories.create') }}" class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
+                        <a href="{{ route('admin.categories.create') }}" class="primary-button">
                             Thêm danh mục
                         </a>
                     @endif
@@ -39,10 +39,10 @@
             </form>
         </div>
 
-        <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
-            <div class="border-b border-gray-200 px-6 py-4">
-                <h3 class="text-lg font-semibold text-gray-900">Danh sách danh mục</h3>
-                <p class="mt-1 text-sm text-gray-500">Hiển thị số sản phẩm, danh mục cha và trạng thái.</p>
+        <div class="overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+            <div class="border-b border-slate-200 px-6 py-4">
+                <h3 class="text-lg font-semibold text-slate-900">Danh sách danh mục</h3>
+                <p class="mt-1 text-sm text-slate-500">Hiển thị số sản phẩm, danh mục cha và trạng thái.</p>
             </div>
 
             @if($categories->isEmpty())

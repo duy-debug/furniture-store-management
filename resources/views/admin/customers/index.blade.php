@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="flex items-end gap-3">
-                    <button type="submit" class="inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <button type="submit" class="primary-button w-full justify-center">
                         Lọc dữ liệu
                     </button>
                 </div>

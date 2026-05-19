@@ -6,7 +6,7 @@
     'confirmLabel' => 'Xác nhận',
     'cancelLabel' => 'Hủy',
     'triggerLabel' => 'Thực hiện',
-    'triggerClass' => 'inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-500 active:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150',
+    'triggerClass' => 'inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-500 active:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150',
     'method' => 'patch',
     'showReasonField' => false,
     'reasonName' => 'reason',
@@ -27,7 +27,7 @@
     $showModal = $showReasonField && $errors->has($reasonName);
     $confirmButtonClass = $confirmClass ?: match ($tone) {
         'green' => 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500',
-        'blue' => 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500',
+        'blue' => 'bg-primary hover:bg-primary/90 focus:ring-primary',
         default => 'bg-amber-600 hover:bg-amber-700 focus:ring-amber-500',
     };
 @endphp
@@ -68,7 +68,7 @@
                     id="{{ $reasonName }}"
                     name="{{ $reasonName }}"
                     rows="4"
-                    class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                     placeholder="{{ $reasonPlaceholder }}"
                     required
                 >{{ old($reasonName) }}</textarea>
@@ -86,7 +86,7 @@
 
             <button
                 type="submit"
-                class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150 {{ $confirmButtonClass }}"
+                class="inline-flex items-center justify-center rounded-lg border border-transparent px-4 py-2 font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out {{ $confirmButtonClass }}"
             >
                 {{ $confirmLabel }}
             </button>

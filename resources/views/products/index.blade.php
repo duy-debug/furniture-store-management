@@ -1,8 +1,19 @@
-<x-app-layout>
+@php($layout = $layout ?? 'public-layout')
+<x-dynamic-component :component="$layout">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Sản phẩm') }}
-        </h2>
+        @if($layout === 'app-layout')
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Sản phẩm') }}
+            </h2>
+        @else
+            <div class="py-2">
+                <p class="text-sm font-semibold uppercase tracking-widest text-primary">Danh mục sản phẩm</p>
+                <h1 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Sản phẩm</h1>
+                <p class="mt-3 max-w-2xl text-slate-600">
+                    Khám phá các mẫu nội thất chất lượng cao và lọc nhanh theo nhu cầu của bạn.
+                </p>
+            </div>
+        @endif
     </x-slot>
 
     <div class="py-8">
@@ -117,4 +128,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-dynamic-component>

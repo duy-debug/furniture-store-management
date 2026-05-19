@@ -33,7 +33,7 @@
                         <div class="mb-4">
                             <x-input-label for="description" :value="__('Mô tả')" />
                             <textarea id="description" name="description" rows="3"
-                                      class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('description', $role->description) }}</textarea>
+                                      class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary">{{ old('description', $role->description) }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
 
@@ -46,8 +46,8 @@
                         </div>
 
                         @if($role->is_system)
-                            <div class="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                                <p class="text-sm text-blue-700">
+                            <div class="mb-6 rounded-lg border border-accent/20 bg-accent/20 p-3">
+                                <p class="text-sm text-primary">
                                     <strong>Lưu ý:</strong> Đây là vai trò hệ thống. Bạn chỉ có thể thay đổi tên, mô tả và thứ tự sắp xếp.
                                 </p>
                             </div>
@@ -55,7 +55,7 @@
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Cập nhật') }}</x-primary-button>
-                            <a href="{{ route('admin.roles.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Hủy</a>
+                            <a href="{{ route('admin.roles.index') }}" class="secondary-button">Hủy</a>
                         </div>
                     </form>
                 </div>

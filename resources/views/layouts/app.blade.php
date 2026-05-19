@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased bg-slate-50 text-slate-900 overflow-x-hidden">
+        <div class="min-h-screen bg-slate-50 overflow-x-hidden">
             @include('layouts.navigation')
 
             {{-- Toast Notification --}}
@@ -23,15 +23,15 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="border-b border-primary/10 bg-white/90 shadow-sm backdrop-blur">
+                    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="w-full min-w-0">
                 {{ $slot }}
             </main>
         </div>

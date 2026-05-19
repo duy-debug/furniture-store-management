@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="lg:col-span-4 flex flex-wrap gap-3">
-                    <button type="submit" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <button type="submit" class="primary-button">
                         Lọc dữ liệu
                     </button>
                     <a href="{{ route('admin.design-requests.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">

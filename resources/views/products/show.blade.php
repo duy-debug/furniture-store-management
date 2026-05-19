@@ -1,8 +1,16 @@
-<x-app-layout>
+@php($layout = $layout ?? 'public-layout')
+<x-dynamic-component :component="$layout">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $product->name }}
-        </h2>
+        @if($layout === 'app-layout')
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ $product->name }}
+            </h2>
+        @else
+            <div class="py-2">
+                <p class="text-sm font-semibold uppercase tracking-widest text-primary">Chi tiết sản phẩm</p>
+                <h1 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">{{ $product->name }}</h1>
+            </div>
+        @endif
     </x-slot>
 
     <div class="py-8">
@@ -164,4 +172,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+</x-dynamic-component>

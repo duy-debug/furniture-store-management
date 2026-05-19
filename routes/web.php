@@ -28,6 +28,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/dashboard', function () {
+    /** @var \App\Models\User $user */
     $user = auth()->user();
 
     // Admin/Staff → redirect về admin dashboard
@@ -39,7 +40,7 @@ Route::get('/dashboard', function () {
     return view('customer.dashboard');
 })->middleware(['auth', 'account.active'])->name('dashboard');
 
-Route::middleware(['auth', 'account.active'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/items', [CartController::class, 'store'])->name('cart.items.store');
     Route::patch('/cart/items/{cartItem}', [CartController::class, 'update'])->name('cart.items.update');
@@ -51,30 +52,30 @@ Route::middleware(['auth', 'account.active'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:design_request.create'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:design_request.create'])->group(function () {
     Route::get('/design-requests/create', [DesignRequestController::class, 'create'])->name('design-requests.create');
     Route::post('/design-requests', [DesignRequestController::class, 'store'])->name('design-requests.store');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:design_request.own_view'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:design_request.own_view'])->group(function () {
     Route::get('/design-requests', [DesignRequestController::class, 'index'])->name('design-requests.index');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:design_request.own_detail,design_request.detail'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:design_request.own_detail,design_request.detail'])->group(function () {
     Route::get('/design-requests/{designRequest}', [DesignRequestController::class, 'show'])->name('design-requests.show');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:order.create'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:order.create'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:order.own_view'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:order.own_view'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
 
-Route::middleware(['auth', 'account.active', 'permission:order.own_detail,order.detail'])->group(function () {
+Route::middleware(['auth', 'account.active', 'customer', 'permission:order.own_detail,order.detail'])->group(function () {
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

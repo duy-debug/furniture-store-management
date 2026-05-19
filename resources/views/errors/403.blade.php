@@ -18,7 +18,7 @@
             }, 1000);
         ">
             <h1 class="text-6xl font-bold text-gray-300 mb-4">403</h1>
-            <p class="text-xl text-gray-700 mb-8">Bạn không có quyền truy cập khu vực quản trị.</p>
+            <p class="text-xl text-gray-700 mb-8">Bạn không có quyền truy cập khu vực này.</p>
 
             {{-- Countdown circle --}}
             <div class="flex flex-col items-center gap-4">
