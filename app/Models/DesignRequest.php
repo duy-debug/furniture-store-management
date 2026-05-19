@@ -34,6 +34,16 @@ class DesignRequest extends Model
         'cancelled' => 'Đã hủy',
     ];
 
+    public const ADMIN_STATUS_FLOW = [
+        'new' => ['contacting', 'cancelled'],
+        'contacting' => ['surveyed', 'cancelled'],
+        'surveyed' => ['designing', 'cancelled'],
+        'designing' => ['sent_design', 'cancelled'],
+        'sent_design' => ['approved', 'cancelled'],
+        'approved' => ['constructing', 'cancelled'],
+        'constructing' => ['completed', 'cancelled'],
+    ];
+
     protected $fillable = [
         'user_id',
         'assigned_staff_id',
@@ -110,5 +120,26 @@ class DesignRequest extends Model
             'cancelled' => 'bg-red-50 text-red-700',
             default => 'bg-gray-50 text-gray-700',
         };
+    }
+
+    public function statusTimestampField(string $status): ?string
+    {
+        return match ($status) {
+            'contacting' => 'contacted_at',
+            'surveyed' => 'surveyed_at',
+            'completed' => 'completed_at',
+            'cancelled' => 'cancelled_at',
+            default => null,
+        };
+    }
+
+    public function adminAllowedStatuses(): array
+    {
+        return self::ADMIN_STATUS_FLOW[$this->status] ?? [];
+    }
+
+    public function isTerminalStatus(): bool
+    {
+        return in_array($this->status, ['completed', 'cancelled'], true);
     }
 }

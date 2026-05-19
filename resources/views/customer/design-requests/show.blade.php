@@ -50,6 +50,14 @@
                                 <p class="mt-2 text-sm text-gray-900">{{ $designRequest->style_preference }}</p>
                             </div>
                             <div class="rounded-2xl bg-gray-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Chiều cao trần</p>
+                                <p class="mt-2 text-sm text-gray-900">{{ number_format($designRequest->ceiling_height, 2, ',', '.') }} m</p>
+                            </div>
+                            <div class="rounded-2xl bg-gray-50 p-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Số phòng</p>
+                                <p class="mt-2 text-sm text-gray-900">{{ $designRequest->room_count }}</p>
+                            </div>
+                            <div class="rounded-2xl bg-gray-50 p-4">
                                 <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Màu sắc chủ đạo</p>
                                 <p class="mt-2 text-sm text-gray-900">{{ $designRequest->main_color }}</p>
                             </div>

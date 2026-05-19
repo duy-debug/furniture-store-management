@@ -70,6 +70,28 @@
                             </div>
                         </div>
 
+                        <div class="grid gap-6 md:grid-cols-2">
+                            <div>
+                                <label class="mb-2 block text-sm font-medium text-gray-700">Chiều cao trần (m)</label>
+                                <input type="number" name="ceiling_height" step="0.01" min="0.01" value="{{ old('ceiling_height') }}"
+                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       placeholder="Ví dụ: 3.2">
+                                @error('ceiling_height')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="mb-2 block text-sm font-medium text-gray-700">Số phòng</label>
+                                <input type="number" name="room_count" min="1" step="1" value="{{ old('room_count') }}"
+                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       placeholder="Ví dụ: 3">
+                                @error('room_count')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Địa chỉ không gian</label>
                             <textarea name="space_address" rows="3"

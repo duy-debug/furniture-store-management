@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DesignRequestController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -133,5 +134,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
 
     Route::middleware('permission:order.cancel')->group(function () {
         Route::patch('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+    });
+
+    Route::middleware('permission:design_request.view')->group(function () {
+        Route::get('design-requests', [DesignRequestController::class, 'index'])->name('design-requests.index');
+    });
+
+    Route::middleware('permission:design_request.detail')->group(function () {
+        Route::get('design-requests/{designRequest}', [DesignRequestController::class, 'show'])->whereNumber('designRequest')->withTrashed()->name('design-requests.show');
+    });
+
+    Route::middleware('permission:design_request.update_status')->group(function () {
+        Route::patch('design-requests/{designRequest}/status', [DesignRequestController::class, 'updateStatus'])->whereNumber('designRequest')->withTrashed()->name('design-requests.status');
     });
 });
