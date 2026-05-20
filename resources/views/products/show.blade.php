@@ -18,10 +18,10 @@
 
             {{-- Breadcrumb --}}
             <nav class="mb-6 text-sm text-gray-500">
-                <a href="{{ route('products.index') }}" class="hover:text-indigo-600">Sản phẩm</a>
+                <a href="{{ route('products.index') }}" class="text-[#1E3A5F]">Sản phẩm</a>
                 <span class="mx-2">/</span>
                 @if($product->category)
-                    <a href="{{ route('products.index', ['category' => $product->category_id]) }}" class="hover:text-indigo-600">{{ $product->category->name }}</a>
+                    <a href="{{ route('products.index', ['category' => $product->category_id]) }}" class="text-[#1E3A5F]">{{ $product->category->name }}</a>
                     <span class="mx-2">/</span>
                 @endif
                 <span class="text-gray-900">{{ $product->name }}</span>
@@ -55,7 +55,7 @@
                             <div class="flex gap-2 overflow-x-auto">
                                 @foreach($product->images as $index => $image)
                                     <button @click="activeImage = {{ $index }}"
-                                            :class="activeImage === {{ $index }} ? 'ring-2 ring-indigo-500' : 'ring-1 ring-gray-200'"
+                                            :class="activeImage === {{ $index }} ? 'ring-2 ring-[#1E3A5F]' : 'ring-1 ring-gray-200'"
                                             class="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden">
                                         <img src="{{ asset('storage/' . $image->image_path) }}"
                                              alt="" class="w-full h-full object-cover">
@@ -69,7 +69,7 @@
                     <div class="p-6 lg:border-l border-gray-200">
                         {{-- Category --}}
                         @if($product->category)
-                            <p class="text-sm text-indigo-600 font-medium mb-2">{{ $product->category->name }}</p>
+                            <p class="text-sm font-medium mb-2 text-[#1E3A5F]">{{ $product->category->name }}</p>
                         @endif
 
                         {{-- Name --}}
@@ -80,7 +80,7 @@
 
                         {{-- Price --}}
                         <div class="mb-6">
-                            <span class="text-3xl font-bold text-indigo-600">{{ number_format($product->price, 0, ',', '.') }}đ</span>
+                            <span class="text-3xl font-bold text-[#2563EB]">{{ number_format($product->price, 0, ',', '.') }}đ</span>
                         </div>
 
                         {{-- Stock Status --}}
@@ -131,7 +131,7 @@
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition text-sm uppercase tracking-widest">
+                                    <button type="submit" class="w-full px-6 py-3 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition text-sm uppercase tracking-widest">
                                         Thêm vào giỏ hàng
                                     </button>
                                 </form>
@@ -141,7 +141,7 @@
                                 </button>
                             @endif
                         @else
-                            <a href="{{ route('login') }}" class="block w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition text-sm uppercase tracking-widest text-center">
+                            <a href="{{ route('login') }}" class="block w-full px-6 py-3 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition text-sm uppercase tracking-widest text-center">
                                 Đăng nhập để mua hàng
                             </a>
                         @endauth

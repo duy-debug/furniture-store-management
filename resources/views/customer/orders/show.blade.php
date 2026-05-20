@@ -27,7 +27,7 @@
                                     'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
                                     'bg-yellow-50 text-yellow-700' => $order->status === 'pending',
                                     'bg-blue-50 text-blue-700' => $order->status === 'processing',
-                                    'bg-indigo-50 text-indigo-700' => $order->status === 'preparing',
+                                'bg-primary/10 text-primary' => $order->status === 'preparing',
                                     'bg-sky-50 text-sky-700' => $order->status === 'shipping',
                                     'bg-green-50 text-green-700' => $order->status === 'completed',
                                     'bg-red-50 text-red-700' => $order->status === 'cancelled',
@@ -102,7 +102,7 @@
                             </div>
                             <div class="flex items-center justify-between border-t border-gray-200 pt-3">
                                 <span class="text-gray-500">Tổng thanh toán</span>
-                                <span class="text-lg font-semibold text-indigo-600">{{ number_format($order->total_amount, 0, ',', '.') }}đ</span>
+                                <span class="text-lg font-semibold text-primary">{{ number_format($order->total_amount, 0, ',', '.') }}đ</span>
                             </div>
                         </div>
                     </div>

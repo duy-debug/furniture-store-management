@@ -17,7 +17,7 @@
     <body class="font-sans antialiased bg-slate-50 text-slate-900">
 
         {{-- Header / Navigation --}}
-        <header class="sticky top-0 z-50 border-b border-white/10 bg-primary text-white shadow-sm">
+        <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-primary text-white shadow-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     {{-- Logo --}}
@@ -71,7 +71,7 @@
         @endisset
 
         {{-- Page Content --}}
-        <main>
+        <main class="pt-16">
             {{ $slot }}
         </main>
 

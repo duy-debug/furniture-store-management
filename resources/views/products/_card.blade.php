@@ -18,19 +18,19 @@
     <div class="p-4">
         {{-- Category --}}
         @if($product->category)
-            <p class="text-xs text-indigo-600 font-medium mb-1">{{ $product->category->name }}</p>
+            <p class="text-xs font-medium mb-1 text-[#1E3A5F]">{{ $product->category->name }}</p>
         @endif
 
         {{-- Name --}}
         <a href="{{ route('products.show', $product->slug) }}" class="block">
-            <h3 class="text-sm font-medium text-gray-900 line-clamp-2 hover:text-indigo-600 transition">
+            <h3 class="text-sm font-medium text-gray-900 line-clamp-2 transition hover:text-[#1E3A5F]">
                 {{ $product->name }}
             </h3>
         </a>
 
         {{-- Price & Stock --}}
         <div class="flex items-center justify-between mt-3">
-            <span class="text-base font-semibold text-indigo-600">
+            <span class="text-base font-semibold text-[#2563EB]">
                 {{ number_format($product->price, 0, ',', '.') }}đ
             </span>
             @if($product->stock_quantity > 0)
@@ -47,7 +47,7 @@
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="w-full px-3 py-2 bg-indigo-600 text-white text-xs font-medium rounded-md hover:bg-indigo-700 transition">
+                    <button type="submit" class="w-full px-3 py-2 bg-[#2563EB] text-white text-xs font-medium rounded-md transition hover:bg-[#1D4ED8]">
                         Thêm vào giỏ
                     </button>
                 </form>

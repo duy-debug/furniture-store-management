@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm font-medium text-indigo-600">Customer space</p>
+                <p class="text-sm font-medium text-primary">Customer space</p>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Yêu cầu thiết kế của tôi
                 </h2>
             </div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('design-requests.create') }}"
-                   class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition">
+                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
                     Gửi yêu cầu mới
                 </a>
                 <a href="{{ route('dashboard') }}"
@@ -31,7 +31,7 @@
                         </p>
                         <div class="mt-6">
                             <a href="{{ route('design-requests.create') }}"
-                               class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                               class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
                                 Gửi yêu cầu đầu tiên
                             </a>
                         </div>
@@ -67,7 +67,7 @@
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="{{ route('design-requests.show', $designRequest) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                                            <a href="{{ route('design-requests.show', $designRequest) }}" class="text-sm font-medium text-primary hover:text-primary/90">
                                                 Xem chi tiết
                                             </a>
                                         </td>

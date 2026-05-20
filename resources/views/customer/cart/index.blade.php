@@ -18,7 +18,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">Giỏ hàng của bạn đang trống</h3>
                         <p class="mt-2 text-sm text-gray-500">Hãy thêm sản phẩm vào giỏ để bắt đầu mua sắm.</p>
                         <div class="mt-6">
-                            <a href="{{ route('products.index') }}" class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                            <a href="{{ route('products.index') }}" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
                                 Xem sản phẩm
                             </a>
                         </div>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="flex items-center justify-between border-t border-gray-200 pt-3">
                                 <span class="text-gray-500">Tổng tiền</span>
-                                <span class="text-lg font-semibold text-indigo-600">{{ number_format($cart->subtotal, 0, ',', '.') }}đ</span>
+                                <span class="text-lg font-semibold text-primary">{{ number_format($cart->subtotal, 0, ',', '.') }}đ</span>
                             </div>
                         </div>
 
@@ -120,7 +120,7 @@
                             <a href="{{ route('products.index') }}" class="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-semibold text-gray-700 hover:bg-gray-200">
                                 Tiếp tục mua sắm
                             </a>
-                            <a href="{{ route('checkout.index') }}" class="block w-full rounded-md bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-700">
+                            <a href="{{ route('checkout.index') }}" class="block w-full rounded-md bg-primary px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary/90">
                                 Thanh toán
                             </a>
                         </div>

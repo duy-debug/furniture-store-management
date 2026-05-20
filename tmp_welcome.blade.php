@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
     <body class="font-sans antialiased bg-slate-50 text-slate-900">
 
         {{-- Header / Navigation --}}
-        <header class="relative z-30 border-b border-white/10 bg-primary text-white shadow-lg">
+        <header class="sticky top-0 z-50 border-b border-white/10 bg-primary text-white shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     {{-- Logo --}}
@@ -57,54 +57,13 @@
             </div>
         </header>
 
-        <header
-            id="home-navbar"
-            class="fixed inset-x-0 top-0 z-50 -translate-y-full border-b border-white/10 bg-primary text-white opacity-0 shadow-lg transition-all duration-500 ease-out pointer-events-none"
-        >
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <a href="/" class="flex items-center gap-3">
-                        <img src="{{ asset('images/logothongmai.jpg') }}" alt="Thông Mai" class="block h-9 w-9 rounded-lg object-cover ring-1 ring-white/20">
-                        <span class="font-bold text-lg text-white">Thông Mai</span>
-                    </a>
-
-                    <nav class="hidden md:flex items-center space-x-8">
-                        <a href="/" class="text-sm font-medium text-white hover:text-accent transition">Trang chủ</a>
-                        <a href="{{ route('products.index') }}" class="text-sm font-medium text-white/80 hover:text-white transition">Sản phẩm</a>
-                        <a href="#categories" class="text-sm font-medium text-white/80 hover:text-white transition">Danh mục</a>
-                        <a href="#contact" class="text-sm font-medium text-white/80 hover:text-white transition">Liên hệ</a>
-                    </nav>
-
-                    <div class="flex items-center gap-3">
-                        @auth
-                            <a href="{{ route('dashboard') }}"
-                               class="inline-flex items-center rounded-lg border border-accent/40 bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary transition hover:bg-accent/90">
-                                Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}"
-                               class="inline-flex items-center rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary">
-                                Đăng nhập
-                            </a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                   class="ms-3 inline-flex items-center rounded-lg border border-primary/20 bg-white bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary transition hover:bg-accent/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary">
-                                    Đăng ký
-                                </a>
-                            @endif
-                        @endauth
-                    </div>
-                </div>
-            </div>
-        </header>
-
         {{-- Hero Banner --}}
         <section
-            id="home-hero"
             class="relative overflow-hidden min-h-[340px]"
             x-data="{
-                current: 0,
-                timer: null,
+                current: 1,
+                transitioning: true,
+                resetTimer: null,
                 slides: [
                     '{{ asset('slides/1.jpg') }}',
                     '{{ asset('slides/2.jpg') }}',
@@ -117,53 +76,57 @@
                     '{{ asset('slides/9.jpg') }}'
                 ],
                 init() {
-                    this.startAutoplay();
+                    this.slides = [this.slides[this.slides.length - 1], ...this.slides, this.slides[0]];
+                    this.current = 1;
+                    this.startAutoPlay();
                 },
-                startAutoplay() {
-                    this.stopAutoplay();
-                    this.timer = setInterval(() => {
+                startAutoPlay() {
+                    setInterval(() => {
                         this.nextSlide();
-                    }, 6000);
-                },
-                stopAutoplay() {
-                    if (this.timer) {
-                        clearInterval(this.timer);
-                        this.timer = null;
-                    }
-                },
-                goTo(index) {
-                    if (index === this.current) return;
-                    this.current = index;
-                    this.startAutoplay();
+                    }, 5000);
                 },
                 nextSlide() {
-                    this.current = (this.current + 1) % this.slides.length;
-                    this.startAutoplay();
-                },
-                prevSlide() {
-                    this.current = (this.current - 1 + this.slides.length) % this.slides.length;
-                    this.startAutoplay();
+                    if (this.current >= this.slides.length - 1) {
+                        return;
+                    }
+
+                    this.transitioning = true;
+                    this.current += 1;
+
+                    if (this.current === this.slides.length - 1) {
+                        clearTimeout(this.resetTimer);
+                        this.resetTimer = setTimeout(() => {
+                            this.transitioning = false;
+                            this.current = 1;
+                            this.$nextTick(() => {
+                                requestAnimationFrame(() => {
+                                    this.transitioning = true;
+                                });
+                            });
+                        }, 1000);
+                    }
                 }
             }"
             x-init="init()"
-            x-on:mouseenter="stopAutoplay()"
-            x-on:mouseleave="startAutoplay()"
         >
             <div class="absolute inset-0 overflow-hidden">
-                <template x-for="(slide, index) in slides" :key="`${index}-${slide}`">
-                    <div
-                        class="absolute inset-0 transition-[opacity,transform] duration-1000 ease-out will-change-transform"
-                        :class="index === current ? 'opacity-100 scale-105' : 'opacity-0 scale-100 pointer-events-none'"
-                    >
-                        <img
-                            :src="slide"
-                            alt="Hero banner nội thất Thông Mai"
-                            class="h-full w-full object-cover object-center"
-                        >
-                    </div>
-                </template>
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-900/40 to-slate-950/20"></div>
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(160,210,235,0.22),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(44,127,184,0.28),transparent_40%)]"></div>
+                <div
+                    class="flex h-full flex-nowrap"
+                    :class="transitioning ? 'transition-transform duration-1000 ease-in-out' : 'transition-none'"
+                    :style="`width: ${slides.length * 100}%; transform: translateX(-${current * (100 / slides.length)}%);`"
+                >
+                    <template x-for="(slide, index) in slides" :key="`${index}-${slide}`">
+                        <div class="h-full flex-none" :style="`width: ${100 / slides.length}%`">
+                            <img
+                                :src="slide"
+                                alt="Hero banner nội thất Thông Mai"
+                                class="h-full w-full object-cover object-center"
+                            >
+                        </div>
+                    </template>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/65 via-slate-900/35 to-slate-950/20"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(160,210,235,0.18),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(44,127,184,0.24),transparent_40%)]"></div>
             </div>
 
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 min-h-[420px] flex items-center">
@@ -188,38 +151,13 @@
                             Tư vấn thiết kế
                         </a>
                     </div>
-                </div>
 
-                <div class="absolute bottom-6 left-4 right-4 flex items-center justify-between gap-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8">
-                    <div class="flex items-center gap-2">
-                        <button
-                            type="button"
-                            @click="prevSlide()"
-                            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-lg backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-900"
-                            aria-label="Previous slide"
-                        >
-                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12.707 4.293a1 1 0 010 1.414L9.414 9h6.586a1 1 0 110 2H9.414l3.293 3.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <button
-                            type="button"
-                            @click="nextSlide()"
-                            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-lg backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-slate-900"
-                            aria-label="Next slide"
-                        >
-                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M7.293 15.707a1 1 0 010-1.414L10.586 11H4a1 1 0 110-2h6.586L7.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="flex items-center gap-2">
+                    <div class="mt-10 flex items-center gap-2">
                         <template x-for="(slide, index) in slides" :key="`dot-${index}`">
                             <button
                                 type="button"
-                                @click="goTo(index)"
-                                :class="index === current ? 'bg-accent w-10' : 'bg-white/40 w-3 hover:bg-white/60'"
+                                @click="active = index"
+                                :class="active === index ? 'bg-accent w-10' : 'bg-white/40 w-3 hover:bg-white/60'"
                                 class="h-3 rounded-full transition-all duration-300"
                                 :aria-label="`Chuyển sang ảnh ${index + 1}`"
                             ></button>
@@ -230,7 +168,7 @@
         </section>
 
         {{-- Categories Section --}}
-        <section id="categories" class="scroll-mt-24 py-16 lg:py-24 bg-accent/20">
+        <section id="categories" class="py-16 lg:py-24 bg-accent/20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div data-scroll-reveal="left" class="scroll-reveal scroll-reveal-left text-center mb-12">
                     <h2 class="text-3xl font-bold text-slate-900 mb-4">Danh mục sản phẩm</h2>
@@ -251,7 +189,7 @@
                                 </div>
                             @endif
                         </div>
-                        <h3 class="font-medium" style="color: #1E3A5F;">{{ $cat->name }}</h3>
+                        <h3 class="font-medium text-slate-900">{{ $cat->name }}</h3>
                     </a>
                     @empty
                     <div class="col-span-full text-center py-8">
@@ -263,7 +201,7 @@
         </section>
 
         {{-- Featured Products Section --}}
-        <section id="products" class="scroll-mt-24 py-16 lg:py-24 bg-slate-50">
+        <section id="products" class="py-16 lg:py-24 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div data-scroll-reveal="right" class="scroll-reveal scroll-reveal-right text-center mb-12">
                     <h2 class="text-3xl font-bold text-slate-900 mb-4">Sản phẩm nổi bật</h2>
@@ -332,7 +270,7 @@
         </section>
 
         {{-- Contact Section --}}
-        <section id="contact" class="scroll-mt-24 py-16 lg:py-24 bg-primary text-white">
+        <section id="contact" class="py-16 lg:py-24 bg-primary text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div>
@@ -401,27 +339,5 @@
                 </div>
             </div>
         </footer>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const navbar = document.getElementById('home-navbar');
-                const hero = document.getElementById('home-hero');
-                if (!navbar || !hero) return;
-
-                const threshold = Math.max(0, hero.offsetTop - 24);
-                const updateNavbar = () => {
-                    const isVisible = window.scrollY > threshold;
-                    navbar.classList.toggle('-translate-y-full', !isVisible);
-                    navbar.classList.toggle('opacity-0', !isVisible);
-                    navbar.classList.toggle('pointer-events-none', !isVisible);
-                    navbar.classList.toggle('translate-y-0', isVisible);
-                    navbar.classList.toggle('opacity-100', isVisible);
-                    navbar.classList.toggle('pointer-events-auto', isVisible);
-                };
-
-                updateNavbar();
-                window.addEventListener('scroll', updateNavbar, { passive: true });
-            });
-        </script>
     </body>
 </html>

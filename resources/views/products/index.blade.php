@@ -28,7 +28,7 @@
                         <div>
                             <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Tìm kiếm</label>
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                   class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                   class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-primary focus:border-primary"
                                    placeholder="Tên, mã, chất liệu...">
                         </div>
 
@@ -36,7 +36,7 @@
                         <div>
                             <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Danh mục</label>
                             <select id="category" name="category"
-                                    class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-primary focus:border-primary">
                                 <option value="">Tất cả</option>
                                 @foreach($categories as $cat)
                                     <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>
@@ -51,10 +51,10 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Khoảng giá</label>
                             <div class="flex gap-2">
                                 <input type="number" name="min_price" value="{{ request('min_price') }}"
-                                       class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                       class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-primary focus:border-primary"
                                        placeholder="Từ" min="0">
                                 <input type="number" name="max_price" value="{{ request('max_price') }}"
-                                       class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                       class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-primary focus:border-primary"
                                        placeholder="Đến" min="0">
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                         <div>
                             <label class="inline-flex items-center">
                                 <input type="checkbox" name="in_stock" value="1"
-                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                       class="rounded border-gray-300 text-primary shadow-sm focus:ring-primary"
                                        {{ request('in_stock') === '1' ? 'checked' : '' }}>
                                 <span class="ml-2 text-sm text-gray-700">Chỉ còn hàng</span>
                             </label>
@@ -73,7 +73,7 @@
                         <div>
                             <label for="sort" class="block text-sm font-medium text-gray-700 mb-1">Sắp xếp</label>
                             <select id="sort" name="sort"
-                                    class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    class="w-full border-gray-300 rounded-md shadow-sm text-sm focus:ring-primary focus:border-primary">
                                 <option value="newest" {{ request('sort') === 'newest' ? 'selected' : '' }}>Mới nhất</option>
                                 <option value="price_asc" {{ request('sort') === 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
                                 <option value="price_desc" {{ request('sort') === 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
@@ -84,7 +84,7 @@
 
                         <div class="flex gap-2">
                             <button type="submit"
-                                    class="flex-1 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition">
+                                    class="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition">
                                 Lọc
                             </button>
                             <a href="{{ route('products.index') }}"

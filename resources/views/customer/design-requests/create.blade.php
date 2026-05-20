@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="text-sm font-medium text-indigo-600">Customer space</p>
+                <p class="text-sm font-medium text-primary">Customer space</p>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Gửi yêu cầu thiết kế nội thất
                 </h2>
@@ -31,7 +31,7 @@
                                 Chỉ cần điền thông tin thiết kế, hệ thống sẽ tự lấy thông tin liên hệ từ hồ sơ của bạn.
                             </p>
                         </div>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                        <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                             design_request.create
                         </span>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="grid gap-6 md:grid-cols-2">
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Loại không gian</label>
-                                <select name="space_type" class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                                <select name="space_type" class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary">
                                     <option value="">Chọn loại không gian</option>
                                     @foreach($spaceTypeLabels as $key => $label)
                                         <option value="{{ $key }}" @selected(old('space_type') === $key)>{{ $label }}</option>
@@ -62,7 +62,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Diện tích (m²)</label>
                                 <input type="number" name="space_area" step="0.01" min="0.01" value="{{ old('space_area') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: 28.5">
                                 @error('space_area')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -74,7 +74,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Chiều cao trần (m)</label>
                                 <input type="number" name="ceiling_height" step="0.01" min="0.01" value="{{ old('ceiling_height') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: 3.2">
                                 @error('ceiling_height')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -84,7 +84,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Số phòng</label>
                                 <input type="number" name="room_count" min="1" step="1" value="{{ old('room_count') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: 3">
                                 @error('room_count')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -95,7 +95,7 @@
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Địa chỉ không gian</label>
                             <textarea name="space_address" rows="3"
-                                      class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                      class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                       placeholder="Nhập địa chỉ căn hộ, nhà ở, văn phòng...">{{ old('space_address') }}</textarea>
                             @error('space_address')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -106,7 +106,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Phong cách mong muốn</label>
                                 <input type="text" name="style_preference" value="{{ old('style_preference') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: Hiện đại, tối giản...">
                                 @error('style_preference')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -116,7 +116,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Màu sắc chủ đạo</label>
                                 <input type="text" name="main_color" value="{{ old('main_color') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: Trắng, gỗ nâu, xanh pastel...">
                                 @error('main_color')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -128,7 +128,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Ngân sách dự kiến</label>
                                 <input type="number" name="budget_amount" min="0" step="1000" value="{{ old('budget_amount') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary"
                                        placeholder="Ví dụ: 50000000">
                                 @error('budget_amount')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -138,7 +138,7 @@
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Thời gian mong muốn</label>
                                 <input type="date" name="desired_completion_date" value="{{ old('desired_completion_date') }}"
-                                       class="w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                                       class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-primary">
                                 @error('desired_completion_date')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -148,7 +148,7 @@
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Yêu cầu cụ thể</label>
                             <textarea name="requirements" rows="6"
-                                      class="w-full rounded-2xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                      class="w-full rounded-2xl border-gray-300 focus:border-primary focus:ring-primary"
                                       placeholder="Mô tả chi tiết nhu cầu, diện tích sử dụng, mong muốn vật liệu, cách bố trí...">{{ old('requirements') }}</textarea>
                             @error('requirements')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -159,13 +159,13 @@
                             <p class="text-sm text-gray-500">
                                 Sau khi gửi, yêu cầu sẽ được tạo với trạng thái <span class="font-semibold text-gray-900">new</span>.
                             </p>
-                            <div class="flex gap-3">
+                            <div class="flex flex-nowrap gap-3">
                                 <a href="{{ route('design-requests.index') }}"
-                                   class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                                   class="inline-flex items-center whitespace-nowrap rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
                                     Xem yêu cầu của tôi
                                 </a>
                                 <button type="submit"
-                                        class="inline-flex items-center rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                                        class="inline-flex items-center whitespace-nowrap rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary/90">
                                     Gửi yêu cầu
                                 </button>
                             </div>
@@ -196,15 +196,15 @@
                         <h3 class="text-lg font-semibold text-gray-900">Mẹo gửi yêu cầu</h3>
                         <ul class="mt-4 space-y-3 text-sm text-gray-600">
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">1</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">1</span>
                                 Mô tả rõ không gian cần thiết kế để đội ngũ dễ hình dung.
                             </li>
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">2</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">2</span>
                                 Ghi ngân sách dự kiến để tư vấn phương án phù hợp.
                             </li>
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">3</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">3</span>
                                 Chọn thời gian mong muốn hợp lý để việc khảo sát diễn ra thuận tiện.
                             </li>
                         </ul>

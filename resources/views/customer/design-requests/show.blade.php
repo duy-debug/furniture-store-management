@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="text-sm font-medium text-indigo-600">Customer space</p>
+                <p class="text-sm font-medium text-primary">Customer space</p>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Chi tiết yêu cầu thiết kế
                 </h2>
@@ -14,7 +14,7 @@
                     Quay lại danh sách
                 </a>
                 <a href="{{ route('design-requests.create') }}"
-                   class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition">
+                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
                     Gửi yêu cầu mới
                 </a>
             </div>
@@ -121,14 +121,14 @@
                         </div>
                     </div>
 
-                    <div class="rounded-2xl bg-indigo-600 p-6 text-white shadow-sm">
+                    <div class="rounded-2xl bg-primary p-6 text-white shadow-sm">
                         <h3 class="text-lg font-semibold">Gợi ý tiếp theo</h3>
-                        <p class="mt-2 text-sm leading-6 text-indigo-100">
+                        <p class="mt-2 text-sm leading-6 text-white/80">
                             Khi trạng thái thay đổi, bạn có thể quay lại trang này để theo dõi tiến độ yêu cầu của mình.
                         </p>
                         <div class="mt-5 flex flex-col gap-3">
                             <a href="{{ route('design-requests.index') }}"
-                               class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-50">
+                               class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-primary hover:bg-white/90">
                                 Xem toàn bộ yêu cầu
                             </a>
                             <a href="{{ route('design-requests.create') }}"

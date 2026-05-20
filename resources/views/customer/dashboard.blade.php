@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm font-medium text-indigo-600">Customer space</p>
+                <p class="text-sm font-medium text-primary">Customer space</p>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Xin chào, {{ auth()->user()->name }}!
                 </h2>
@@ -18,7 +18,7 @@
                     Gửi yêu cầu thiết kế
                 </a>
                 <a href="{{ route('cart.index') }}"
-                   class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition">
+                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
                     Xem giỏ hàng
                 </a>
             </div>
@@ -29,13 +29,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white shadow-2xl">
                 <div class="absolute inset-0 opacity-20">
-                    <div class="absolute -top-20 right-0 h-72 w-72 rounded-full bg-indigo-500 blur-3xl"></div>
+                    <div class="absolute -top-20 right-0 h-72 w-72 rounded-full bg-primary blur-3xl"></div>
                     <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-emerald-400 blur-3xl"></div>
                 </div>
 
                 <div class="relative grid gap-8 p-8 lg:grid-cols-[1.25fr,0.75fr] lg:p-10">
                     <div>
-                        <span class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-indigo-100">
+                        <span class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-white">
                             Khách hàng
                         </span>
                         <h1 class="mt-5 max-w-2xl text-3xl font-bold tracking-tight sm:text-5xl">
@@ -75,7 +75,7 @@
                                     </p>
                                 </div>
                                 <div class="rounded-2xl bg-white/10 p-3">
-                                    <svg class="h-6 w-6 text-indigo-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                     </svg>
                                 </div>
@@ -121,7 +121,7 @@
                     <p class="mt-2 text-sm leading-6 text-gray-500">
                         Xem danh sách sản phẩm, lọc theo nhu cầu và chọn món phù hợp không gian sống.
                     </p>
-                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                    <p class="mt-4 text-sm font-semibold text-primary group-hover:text-primary/90">
                         Xem ngay →
                     </p>
                 </a>
@@ -137,7 +137,7 @@
                     <p class="mt-2 text-sm leading-6 text-gray-500">
                         Điều chỉnh số lượng, xóa sản phẩm và chuyển sang thanh toán khi sẵn sàng.
                     </p>
-                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                    <p class="mt-4 text-sm font-semibold text-primary group-hover:text-primary/90">
                         Mở giỏ hàng →
                     </p>
                 </a>
@@ -153,7 +153,7 @@
                     <p class="mt-2 text-sm leading-6 text-gray-500">
                         Theo dõi lịch sử đơn, trạng thái và xem lại chi tiết từng lần mua.
                     </p>
-                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                    <p class="mt-4 text-sm font-semibold text-primary group-hover:text-primary/90">
                         Xem lịch sử →
                     </p>
                 </a>
@@ -169,7 +169,7 @@
                     <p class="mt-2 text-sm leading-6 text-gray-500">
                         Cập nhật tên, số điện thoại và thông tin liên hệ để đặt hàng thuận tiện hơn.
                     </p>
-                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                    <p class="mt-4 text-sm font-semibold text-primary group-hover:text-primary/90">
                         Chỉnh sửa hồ sơ →
                     </p>
                 </a>
@@ -185,7 +185,7 @@
                     <p class="mt-2 text-sm leading-6 text-gray-500">
                         Gửi yêu cầu thiết kế cho không gian của bạn và theo dõi tiến độ ngay trong hệ thống.
                     </p>
-                    <p class="mt-4 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700">
+                    <p class="mt-4 text-sm font-semibold text-primary group-hover:text-primary/90">
                         Tạo yêu cầu →
                     </p>
                 </a>
@@ -200,7 +200,7 @@
                                 Đây là các bước chính mà khách hàng thường dùng trong hệ thống.
                             </p>
                         </div>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                        <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                             Customer
                         </span>
                     </div>
@@ -253,19 +253,19 @@
                         <h3 class="text-lg font-semibold text-gray-900">Gợi ý thao tác</h3>
                         <ul class="mt-4 space-y-3 text-sm text-gray-600">
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">1</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">1</span>
                                 Bắt đầu bằng việc khám phá sản phẩm phù hợp.
                             </li>
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">2</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">2</span>
                                 Quản lý giỏ hàng trước khi sang bước thanh toán.
                             </li>
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">3</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">3</span>
                                 Theo dõi đơn hàng ngay sau khi đặt xong.
                             </li>
                             <li class="flex gap-3">
-                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-700">4</span>
+                                <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">4</span>
                                 Cập nhật hồ sơ để thông tin nhận hàng luôn chính xác.
                             </li>
                         </ul>
