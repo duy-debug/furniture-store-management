@@ -9,7 +9,7 @@
                 <p class="mt-1 text-sm text-gray-500">{{ $order->customer_phone }} @if($order->customer_email) · {{ $order->customer_email }} @endif</p>
             </div>
             <div class="flex flex-wrap gap-2">
-                <a href="{{ route('admin.orders.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                <a href="{{ route('admin.orders.index') }}" class="secondary-button">
                     Quay lại danh sách
                 </a>
                 @if($order->status !== 'completed' && $order->status !== 'cancelled' && $order->status !== 'returned')

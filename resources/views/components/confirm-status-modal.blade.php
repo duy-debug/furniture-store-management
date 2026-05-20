@@ -6,7 +6,7 @@
     'confirmLabel' => 'Xác nhận',
     'cancelLabel' => 'Hủy',
     'triggerLabel' => 'Thực hiện',
-    'triggerClass' => 'inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-500 active:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150',
+    'triggerClass' => 'inline-flex items-center px-4 py-2 bg-amber-600 border border-transparent rounded-lg font-semibold text-xs text-white hover:bg-amber-500 active:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150',
     'method' => 'patch',
     'showReasonField' => false,
     'reasonName' => 'reason',
@@ -86,7 +86,7 @@
 
             <button
                 type="submit"
-                class="inline-flex items-center justify-center rounded-lg border border-transparent px-4 py-2 font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out {{ $confirmButtonClass }}"
+            class="inline-flex items-center justify-center rounded-lg border border-transparent px-4 py-2 font-semibold text-xs text-white focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out {{ $confirmButtonClass }}"
             >
                 {{ $confirmLabel }}
             </button>

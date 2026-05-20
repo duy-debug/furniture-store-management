@@ -10,7 +10,7 @@
                     <p class="mt-1 text-sm text-gray-500">Tải nhiều ảnh, chọn ảnh đại diện và quản lý ảnh hiện có.</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <a href="{{ route('admin.products.show', $product) }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.products.show', $product) }}" class="secondary-button">
                         Quay lại chi tiết
                     </a>
                 </div>

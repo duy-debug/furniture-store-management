@@ -7,7 +7,7 @@
                 </h2>
                 <p class="mt-1 text-sm text-gray-500">{{ $order->order_code }}</p>
             </div>
-            <a href="{{ route('orders.index') }}" class="inline-flex items-center rounded-md bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200">
+            <a href="{{ route('orders.index') }}" class="secondary-button">
                 Quay lại lịch sử
             </a>
         </div>

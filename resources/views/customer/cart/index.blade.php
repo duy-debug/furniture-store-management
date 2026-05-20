@@ -18,7 +18,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">Giỏ hàng của bạn đang trống</h3>
                         <p class="mt-2 text-sm text-gray-500">Hãy thêm sản phẩm vào giỏ để bắt đầu mua sắm.</p>
                         <div class="mt-6">
-                            <a href="{{ route('products.index') }}" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+                            <a href="{{ route('products.index') }}" class="primary-button">
                                 Xem sản phẩm
                             </a>
                         </div>
@@ -36,7 +36,7 @@
                             <form method="POST" action="{{ route('cart.clear') }}" onsubmit="return confirm('Bạn có muốn làm trống giỏ hàng không?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-700">
+                                <button type="submit" class="danger-button">
                                     Làm trống giỏ
                                 </button>
                             </form>
@@ -70,7 +70,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="action" value="decrease">
-                                                    <button type="submit" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50">
+                                                    <button type="submit" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-white text-primary hover:bg-primary/5">
                                                         -
                                                     </button>
                                                 </form>
@@ -83,7 +83,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="action" value="increase">
-                                                    <button type="submit" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50">
+                                                    <button type="submit" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-primary/20 bg-white text-primary hover:bg-primary/5">
                                                         +
                                                     </button>
                                                 </form>
@@ -91,7 +91,7 @@
                                                 <form method="POST" action="{{ route('cart.items.destroy', $item) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="inline-flex items-center rounded-md bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100">
+                                                    <button type="submit" class="danger-button">
                                                         Xóa
                                                     </button>
                                                 </form>
@@ -117,10 +117,10 @@
                         </div>
 
                         <div class="mt-6 space-y-3">
-                            <a href="{{ route('products.index') }}" class="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-semibold text-gray-700 hover:bg-gray-200">
+                            <a href="{{ route('products.index') }}" class="secondary-button block w-full justify-center">
                                 Tiếp tục mua sắm
                             </a>
-                            <a href="{{ route('checkout.index') }}" class="block w-full rounded-md bg-primary px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary/90">
+                            <a href="{{ route('checkout.index') }}" class="primary-button block w-full justify-center">
                                 Thanh toán
                             </a>
                         </div>

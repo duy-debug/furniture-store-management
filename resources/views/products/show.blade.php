@@ -136,12 +136,12 @@
                                     </button>
                                 </form>
                             @else
-                                <button disabled class="w-full px-6 py-3 bg-gray-200 text-gray-400 font-semibold rounded-md cursor-not-allowed text-sm uppercase tracking-widest">
+                                <button disabled class="secondary-button w-full justify-center cursor-not-allowed opacity-60">
                                     Hết hàng
                                 </button>
                             @endif
                         @else
-                            <a href="{{ route('login') }}" class="block w-full px-6 py-3 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition text-sm uppercase tracking-widest text-center">
+                            <a href="{{ route('login') }}" class="primary-button block w-full justify-center text-center">
                                 Đăng nhập để mua hàng
                             </a>
                         @endauth

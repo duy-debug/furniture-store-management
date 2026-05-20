@@ -80,7 +80,7 @@
                     <button type="submit" class="primary-button">
                         Lọc dữ liệu
                     </button>
-                    <a href="{{ route('admin.design-requests.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.design-requests.index') }}" class="secondary-button">
                         Xóa bộ lọc
                     </a>
                 </div>

@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Lịch sử đơn hàng
             </h2>
-            <a href="{{ route('products.index') }}" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+            <a href="{{ route('products.index') }}" class="primary-button">
                 Tiếp tục mua sắm
             </a>
         </div>
@@ -18,7 +18,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">Bạn chưa có đơn hàng nào</h3>
                         <p class="mt-2 text-sm text-gray-500">Khi bạn đặt hàng thành công, các đơn sẽ xuất hiện ở đây.</p>
                         <div class="mt-6">
-                            <a href="{{ route('products.index') }}" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+                            <a href="{{ route('products.index') }}" class="primary-button">
                                 Xem sản phẩm
                             </a>
                         </div>

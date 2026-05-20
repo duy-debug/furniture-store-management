@@ -10,15 +10,15 @@
 
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('orders.index') }}"
-                   class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                   class="secondary-button">
                     Lịch sử đơn hàng
                 </a>
                 <a href="{{ route('design-requests.create') }}"
-                   class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                   class="secondary-button">
                     Gửi yêu cầu thiết kế
                 </a>
                 <a href="{{ route('cart.index') }}"
-                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
+                   class="primary-button">
                     Xem giỏ hàng
                 </a>
             </div>
@@ -47,19 +47,19 @@
 
                         <div class="mt-7 flex flex-wrap gap-3">
                             <a href="{{ route('products.index') }}"
-                               class="inline-flex items-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100 transition">
+                               class="primary-button">
                                 Khám phá sản phẩm
                             </a>
                             <a href="{{ route('design-requests.create') }}"
-                               class="inline-flex items-center rounded-md border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15 transition">
+                               class="secondary-button">
                                 Gửi yêu cầu thiết kế
                             </a>
                             <a href="{{ route('checkout.index') }}"
-                               class="inline-flex items-center rounded-md border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15 transition">
+                               class="secondary-button">
                                 Thanh toán
                             </a>
                             <a href="{{ route('profile.edit') }}"
-                               class="inline-flex items-center rounded-md border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15 transition">
+                               class="secondary-button">
                                 Cập nhật hồ sơ
                             </a>
                         </div>

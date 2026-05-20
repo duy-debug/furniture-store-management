@@ -9,7 +9,7 @@
                 <p class="mt-1 text-sm text-gray-500">{{ $designRequest->customer_phone }} @if($designRequest->customer_email) · {{ $designRequest->customer_email }} @endif</p>
             </div>
             <div class="flex flex-wrap gap-2">
-                <a href="{{ route('admin.design-requests.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                <a href="{{ route('admin.design-requests.index') }}" class="secondary-button">
                     Quay lại danh sách
                 </a>
             </div>

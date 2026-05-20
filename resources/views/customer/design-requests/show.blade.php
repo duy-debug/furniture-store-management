@@ -10,11 +10,11 @@
             </div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('design-requests.index') }}"
-                   class="inline-flex items-center rounded-md bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200 transition">
+                   class="secondary-button">
                     Quay lại danh sách
                 </a>
                 <a href="{{ route('design-requests.create') }}"
-                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
+                   class="primary-button">
                     Gửi yêu cầu mới
                 </a>
             </div>
@@ -128,11 +128,11 @@
                         </p>
                         <div class="mt-5 flex flex-col gap-3">
                             <a href="{{ route('design-requests.index') }}"
-                               class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-primary hover:bg-white/90">
+                               class="secondary-button justify-center">
                                 Xem toàn bộ yêu cầu
                             </a>
                             <a href="{{ route('design-requests.create') }}"
-                               class="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/15">
+                               class="primary-button justify-center">
                                 Gửi yêu cầu khác
                             </a>
                         </div>

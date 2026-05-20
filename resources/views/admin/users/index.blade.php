@@ -53,11 +53,11 @@
                     <button type="submit" class="primary-button">
                         Lọc dữ liệu
                     </button>
-                    <a href="{{ route('admin.users.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.users.index') }}" class="secondary-button">
                         Xóa bộ lọc
                     </a>
                     @if(auth()->user()->hasPermission('user.create'))
-                        <a href="{{ route('admin.users.create') }}" class="inline-flex items-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
+                        <a href="{{ route('admin.users.create') }}" class="primary-button">
                             Thêm người dùng
                         </a>
                     @endif

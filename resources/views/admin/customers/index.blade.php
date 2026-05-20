@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="lg:col-span-4 flex flex-wrap gap-3">
-                    <a href="{{ route('admin.customers.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    <a href="{{ route('admin.customers.index') }}" class="secondary-button">
                         Xóa bộ lọc
                     </a>
                 </div>

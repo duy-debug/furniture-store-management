@@ -92,7 +92,7 @@
     </div>
 
     <div class="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
-        <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+        <a href="{{ route('admin.categories.index') }}" class="secondary-button">
             Hủy
         </a>
             <button type="submit" class="primary-button px-5 py-2.5">

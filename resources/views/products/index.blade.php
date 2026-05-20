@@ -84,11 +84,11 @@
 
                         <div class="flex gap-2">
                             <button type="submit"
-                                    class="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition">
+                                    class="primary-button flex-1 justify-center">
                                 Lọc
                             </button>
                             <a href="{{ route('products.index') }}"
-                               class="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-200 transition">
+                                    class="secondary-button">
                                 Xóa
                             </a>
                         </div>

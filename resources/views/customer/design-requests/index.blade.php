@@ -9,11 +9,11 @@
             </div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('design-requests.create') }}"
-                   class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition">
+                   class="primary-button">
                     Gửi yêu cầu mới
                 </a>
                 <a href="{{ route('dashboard') }}"
-                   class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                   class="secondary-button">
                     Về dashboard
                 </a>
             </div>
@@ -31,7 +31,7 @@
                         </p>
                         <div class="mt-6">
                             <a href="{{ route('design-requests.create') }}"
-                               class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+                               class="primary-button">
                                 Gửi yêu cầu đầu tiên
                             </a>
                         </div>

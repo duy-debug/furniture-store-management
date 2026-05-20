@@ -9,11 +9,11 @@
             </div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('design-requests.index') }}"
-                   class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                   class="secondary-button">
                     Yêu cầu của tôi
                 </a>
                 <a href="{{ route('dashboard') }}"
-                   class="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 transition">
+                   class="primary-button">
                     Về dashboard
                 </a>
             </div>
@@ -161,11 +161,11 @@
                             </p>
                             <div class="flex flex-nowrap gap-3">
                                 <a href="{{ route('design-requests.index') }}"
-                                   class="inline-flex items-center whitespace-nowrap rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                                   class="secondary-button whitespace-nowrap">
                                     Xem yêu cầu của tôi
                                 </a>
                                 <button type="submit"
-                                        class="inline-flex items-center whitespace-nowrap rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary/90">
+                                        class="primary-button whitespace-nowrap px-5 py-2.5">
                                     Gửi yêu cầu
                                 </button>
                             </div>

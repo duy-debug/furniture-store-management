@@ -123,7 +123,7 @@
                     this.stopAutoplay();
                     this.timer = setInterval(() => {
                         this.nextSlide();
-                    }, 6000);
+                    }, 2500);
                 },
                 stopAutoplay() {
                     if (this.timer) {
