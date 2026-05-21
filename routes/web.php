@@ -46,7 +46,9 @@ Route::middleware(['auth', 'account.active', 'customer'])->group(function () {
     Route::patch('/cart/items/{cartItem}', [CartController::class, 'update'])->name('cart.items.update');
     Route::delete('/cart/items/{cartItem}', [CartController::class, 'destroy'])->name('cart.items.destroy');
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
+});
 
+Route::middleware(['auth', 'account.active'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -15,9 +15,41 @@
                     <x-nav-link href="/" :active="request()->is('/')">
                         {{ __('Trang chủ') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                        {{ __('Sản phẩm') }}
-                    </x-nav-link>
+                    <div x-data="{ open: false }" class="relative flex items-center" @mouseenter="open = true" @mouseleave="open = false">
+                        <button
+                            type="button"
+                            @click="open = !open"
+                            class="inline-flex items-center rounded-md px-1 py-2 text-sm font-medium text-white/90 transition hover:text-white"
+                        >
+                            <span>Sản phẩm</span>
+                            <svg class="ms-1 h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.942l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div
+                            x-cloak
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-2"
+                            class="absolute left-0 top-full z-50 mt-3 w-72 max-h-80 overflow-y-auto rounded-2xl bg-white p-2 text-slate-700 shadow-xl ring-1 ring-black/5"
+                        >
+                            <a href="{{ route('products.index') }}" class="mb-1 block rounded-xl px-4 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5">
+                                Xem tất cả sản phẩm
+                            </a>
+                            @isset($navProducts)
+                                @foreach($navProducts as $product)
+                                    <a href="{{ route('products.show', $product->slug) }}" class="block rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-primary/5 hover:text-primary {{ request()->routeIs('products.show') && request()->route('slug') === $product->slug ? 'bg-primary/5 text-primary' : '' }}">
+                                        {{ $product->name }}
+                                    </a>
+                                @endforeach
+                            @endisset
+                        </div>
+                    </div>
                     @auth
                         <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                             {{ __('Đơn hàng') }}
@@ -94,9 +126,31 @@
             <x-responsive-nav-link href="/" :active="request()->is('/')">
                 {{ __('Trang chủ') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                {{ __('Sản phẩm') }}
-            </x-responsive-nav-link>
+            <div x-data="{ productsOpen: false }" class="space-y-1">
+                <button
+                    type="button"
+                    @click="productsOpen = !productsOpen"
+                    class="flex w-full items-center justify-between px-4 py-2 text-left text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
+                >
+                    <span>Sản phẩm</span>
+                    <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': productsOpen }" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.942l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <div x-show="productsOpen" x-cloak class="space-y-1 pl-4">
+                    <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        {{ __('Xem tất cả sản phẩm') }}
+                    </x-responsive-nav-link>
+                    @isset($navProducts)
+                        @foreach($navProducts as $product)
+                            <x-responsive-nav-link :href="route('products.show', $product->slug)" :active="request()->routeIs('products.show') && request()->route('slug') === $product->slug">
+                                {{ $product->name }}
+                            </x-responsive-nav-link>
+                        @endforeach
+                    @endisset
+                </div>
+            </div>
             @auth
                 <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                     {{ __('Đơn hàng') }}

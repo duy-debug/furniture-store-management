@@ -8,7 +8,7 @@
         @else
             <div class="py-2">
                 <p class="text-sm font-semibold uppercase tracking-widest text-primary">Danh mục sản phẩm</p>
-                <h1 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Sản phẩm</h1>
+                <h1 class="mt-5 text-3xl font-bold text-slate-900 sm:text-4xl">Sản phẩm</h1>
                 <p class="mt-3 max-w-2xl text-slate-600">
                     Khám phá các mẫu nội thất chất lượng cao và lọc nhanh theo nhu cầu của bạn.
                 </p>
