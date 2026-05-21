@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DesignRequestController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -135,6 +136,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
 
     Route::middleware('permission:order.cancel')->group(function () {
         Route::patch('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+    });
+
+    Route::middleware('admin.only')->group(function () {
+        Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
     });
 
     Route::middleware('permission:design_request.view')->group(function () {

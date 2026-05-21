@@ -114,10 +114,21 @@
                     @endif
 
                     {{-- Separator --}}
-                    @if(auth()->user()->hasPermission('user.view') || auth()->user()->hasPermission('role.view'))
+                    @if(auth()->user()->hasPermission('user.view') || auth()->user()->hasPermission('role.view') || auth()->user()->hasRole('admin'))
                     <div class="pt-4 mt-4 border-t border-white/10">
                         <p class="px-3 text-xs font-semibold uppercase tracking-wider text-white/50">Hệ thống</p>
                     </div>
+                    @endif
+
+                    {{-- Báo cáo --}}
+                    @if(auth()->user()->hasRole('admin'))
+                    <a href="{{ route('admin.reports.index') }}"
+                       class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.reports.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                        <svg class="h-5 w-5 {{ request()->routeIs('admin.reports.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3v18m8-18v18M3 13h18M3 7h18M3 19h18"/>
+                        </svg>
+                        Báo cáo
+                    </a>
                     @endif
 
                     {{-- Quản lý người dùng --}}
@@ -212,5 +223,7 @@
                 </main>
             </div>
         </div>
+
+        @stack('scripts')
     </body>
 </html>
