@@ -57,6 +57,18 @@ class OrderController extends Controller
         ]);
     }
 
+    public function invoice(Order $order): View
+    {
+        abort_unless($order->status === 'completed', 404);
+
+        $order->load(['user', 'items.product']);
+
+        return view('admin.orders.invoice', [
+            'order' => $order,
+            'paymentMethodLabels' => Order::PAYMENT_METHOD_LABELS,
+        ]);
+    }
+
     public function updateStatus(Request $request, Order $order): RedirectResponse
     {
         $validated = $request->validate([

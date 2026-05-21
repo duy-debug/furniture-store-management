@@ -125,7 +125,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
 
     Route::middleware('permission:order.view')->group(function () {
         Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
-        Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::get('orders/{order}', [OrderController::class, 'show'])->whereNumber('order')->name('orders.show');
+        Route::get('orders/{order}/invoice', [OrderController::class, 'invoice'])->whereNumber('order')->name('orders.invoice');
     });
 
     Route::middleware('permission:order.update_status')->group(function () {

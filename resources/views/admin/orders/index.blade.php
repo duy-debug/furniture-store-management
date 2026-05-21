@@ -87,9 +87,16 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 text-right">
-                                        <a href="{{ route('admin.orders.show', $order) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
-                                            Xem chi tiết
-                                        </a>
+                                        <div class="flex items-center justify-end gap-3 whitespace-nowrap">
+                                            @if($order->status === 'completed')
+                                                <a href="{{ route('admin.orders.invoice', $order) }}" target="_blank" rel="noopener" class="text-sm font-medium text-primary hover:text-primary/80">
+                                                    In hóa đơn
+                                                </a>
+                                            @endif
+                                            <a href="{{ route('admin.orders.show', $order) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                                                Xem chi tiết
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
