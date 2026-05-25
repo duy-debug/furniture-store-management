@@ -37,10 +37,15 @@ class PasswordResetLinkController extends Controller
                 return back()->with('success', 'Link đặt lại mật khẩu đã được gửi đến email của bạn.');
             }
 
+            if ($status == Password::RESET_THROTTLED) {
+                return back()
+                    ->withInput($request->only('email'))
+                    ->with('error', 'Bạn vừa yêu cầu link đặt lại mật khẩu. Vui lòng thử lại sau ít phút.');
+            }
+
             return back()
                 ->withInput($request->only('email'))
                 ->with('error', 'Không tìm thấy tài khoản với email này.');
-
         } catch (\Exception $e) {
             return back()
                 ->withInput($request->only('email'))
