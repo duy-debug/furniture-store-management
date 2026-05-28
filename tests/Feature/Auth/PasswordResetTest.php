@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase
@@ -30,6 +31,18 @@ class PasswordResetTest extends TestCase
         Notification::assertSentTo($user, ResetPassword::class);
     }
 
+    public function test_reset_password_link_throttled_response_is_shown(): void
+    {
+        Password::shouldReceive('sendResetLink')
+            ->once()
+            ->andReturn(Password::RESET_THROTTLED);
+
+        $response = $this->post('/forgot-password', ['email' => 'user@example.com']);
+
+        $response->assertSessionHas('error', 'Bạn vừa yêu cầu link đặt lại mật khẩu. Vui lòng thử lại sau ít phút.');
+        $response->assertSessionHasInput('email', 'user@example.com');
+    }
+
     public function test_reset_password_screen_can_be_rendered(): void
     {
         Notification::fake();
@@ -39,7 +52,7 @@ class PasswordResetTest extends TestCase
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get('/reset-password/'.$notification->token);
+            $response = $this->get('/reset-password/' . $notification->token);
 
             $response->assertStatus(200);
 

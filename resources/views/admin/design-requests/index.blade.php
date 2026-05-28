@@ -103,10 +103,9 @@
                     <table class="min-w-full table-fixed divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="w-28 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Mã</th>
-                                <th class="w-48 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Khách hàng</th>
-                                <th class="w-40 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Không gian</th>
-                                <th class="w-28 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngân sách</th>
+                                <th class="w-56 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Khách hàng</th>
+                                <th class="w-44 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Không gian</th>
+                                <th class="w-36 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngân sách</th>
                                 <th class="w-32 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Ngày gửi</th>
                                 <th class="w-32 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Trạng thái</th>
                                 <th class="w-36 px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">NV phụ trách</th>
@@ -116,10 +115,6 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             @foreach($designRequests as $designRequest)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 align-top">
-                                        <div class="truncate text-sm font-semibold text-gray-900">{{ $designRequest->request_code }}</div>
-                                        <div class="mt-1 truncate text-xs text-gray-500">#{{ $designRequest->id }}</div>
-                                    </td>
                                     <td class="px-6 py-4 align-top text-sm text-gray-700">
                                         <div class="truncate font-medium text-gray-900" title="{{ $designRequest->customer_name }}">{{ $designRequest->customer_name }}</div>
                                         <div class="mt-1 truncate text-gray-500" title="{{ $designRequest->customer_phone }}">{{ $designRequest->customer_phone }}</div>
@@ -128,7 +123,7 @@
                                         <div class="truncate font-medium text-gray-900" title="{{ $designRequest->spaceTypeLabel() }}">{{ $designRequest->spaceTypeLabel() }}</div>
                                         <div class="mt-1 truncate text-xs text-gray-500">{{ number_format($designRequest->space_area, 2, ',', '.') }} m²</div>
                                     </td>
-                                    <td class="px-6 py-4 align-top text-sm font-semibold text-gray-900">{{ number_format($designRequest->budget_amount, 0, ',', '.') }} đ</td>
+                                    <td class="px-6 py-4 align-top text-sm font-semibold whitespace-nowrap text-gray-900">{{ number_format($designRequest->budget_amount, 0, ',', '.') }} đ</td>
                                     <td class="px-6 py-4 align-top text-sm text-gray-600">{{ $designRequest->created_at?->format('d/m/Y H:i') }}</td>
                                     <td class="px-6 py-4 align-top text-sm">
                                         <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $designRequest->statusBadgeClasses() }}">
