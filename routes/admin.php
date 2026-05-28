@@ -138,7 +138,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::patch('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
     });
 
-    Route::middleware('admin.only')->group(function () {
+    Route::middleware('permission:report.view')->group(function () {
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
     });
 
