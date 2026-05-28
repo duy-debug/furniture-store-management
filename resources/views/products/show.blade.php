@@ -2,11 +2,13 @@
 <x-dynamic-component :component="$layout">
     <x-slot name="header">
         @if($layout === 'app-layout')
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $product->name }}
-            </h2>
+            <div class="pt-4 sm:pt-6">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ $product->name }}
+                </h2>
+            </div>
         @else
-            <div class="py-2">
+            <div class="py-5 sm:py-6">
                 <p class="text-sm font-semibold uppercase tracking-widest text-primary">Chi tiết sản phẩm</p>
                 <h1 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">{{ $product->name }}</h1>
             </div>

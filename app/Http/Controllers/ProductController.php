@@ -85,7 +85,7 @@ class ProductController extends Controller
             ->where('id', '!=', $product->id)
             ->where('status', 'active')
             ->with('images')
-            ->take(4)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('products.show', compact('product', 'relatedProducts') + [
