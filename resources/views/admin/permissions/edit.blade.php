@@ -27,6 +27,11 @@
                                 Chọn các quyền cần gán cho vai trò <strong>{{ $role->name }}</strong>.
                                 Các quyền được nhóm theo module.
                             </p>
+                            @if($role->code === 'customer')
+                                <p class="mt-2 text-sm text-amber-700">
+                                    Sản phẩm và danh mục là khu vực public nên không cần gán quyền `product.*` hoặc `category.*` cho Customer.
+                                </p>
+                            @endif
                         </div>
 
                         {{-- Nút chọn tất cả / bỏ chọn tất cả --}}

@@ -21,6 +21,12 @@ class PermissionController extends Controller
             ->get()
             ->groupBy('module');
 
+        if ($role->code === 'customer') {
+            $permissions = $permissions->reject(function ($modulePermissions, $module) {
+                return in_array($module, ['product', 'category'], true);
+            });
+        }
+
         $rolePermissionIds = $role->permissions()->pluck('permissions.id')->toArray();
 
         return view('admin.permissions.edit', compact('role', 'permissions', 'rolePermissionIds'));
@@ -47,6 +53,14 @@ class PermissionController extends Controller
         }
 
         $permissionIds = $validated['permissions'] ?? [];
+
+        if ($role->code === 'customer') {
+            $permissionIds = Permission::query()
+                ->whereIn('id', $permissionIds)
+                ->whereNotIn('module', ['product', 'category'])
+                ->pluck('id')
+                ->toArray();
+        }
 
         $role->permissions()->sync($permissionIds);
 

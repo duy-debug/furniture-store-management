@@ -79,6 +79,43 @@ class PermissionMatrixTest extends TestCase
             ->assertOk();
     }
 
+    public function test_customer_role_permission_page_hides_product_and_category_modules(): void
+    {
+        $this->makePermission('product.view', 'View products', 'product');
+        $this->makePermission('category.view', 'View categories', 'category');
+
+        $admin = $this->makeUserWithRole('admin', ['permission.assign']);
+        $customer = $this->makeUserWithRole('customer', ['product.view', 'category.view']);
+
+        $this->actingAs($admin)
+            ->get(route('admin.roles.permissions.edit', $customer->roles()->first()))
+            ->assertOk()
+            ->assertDontSee('product.view')
+            ->assertDontSee('category.view');
+    }
+
+    public function test_customer_role_permission_update_strips_product_and_category_permissions(): void
+    {
+        $productView = $this->makePermission('product.view', 'View products', 'product');
+        $categoryView = $this->makePermission('category.view', 'View categories', 'category');
+        $cartView = $this->makePermission('cart.view', 'View carts', 'cart');
+
+        $admin = $this->makeUserWithRole('admin', ['permission.assign']);
+        $customer = $this->makeUserWithRole('customer', ['product.view', 'category.view', 'cart.view']);
+
+        $this->actingAs($admin)
+            ->put(route('admin.roles.permissions.update', $customer->roles()->first()), [
+                'permissions' => [$productView->id, $categoryView->id, $cartView->id],
+            ])
+            ->assertRedirect(route('admin.roles.index'));
+
+        $customerRole = $customer->roles()->first();
+
+        $this->assertFalse($customerRole->fresh()->permissions()->where('code', 'product.view')->exists());
+        $this->assertFalse($customerRole->fresh()->permissions()->where('code', 'category.view')->exists());
+        $this->assertTrue($customerRole->fresh()->permissions()->where('code', 'cart.view')->exists());
+    }
+
     private function makeUserWithRole(string $roleCode, array $permissionCodes = []): User
     {
         $role = Role::query()->create([
