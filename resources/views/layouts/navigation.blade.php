@@ -51,19 +51,25 @@
                         </div>
                     </div>
                     @auth
+                        @if(auth()->user()->hasPermission('order.own_view') || auth()->user()->hasPermission('order.detail'))
                         <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                             {{ __('Đơn hàng') }}
                         </x-nav-link>
+                        @endif
                     @endauth
                     @auth
+                        @if(auth()->user()->hasPermission('design_request.own_view'))
                         <x-nav-link :href="route('design-requests.index')" :active="request()->routeIs('design-requests.*')">
                             {{ __('Thiết kế') }}
                         </x-nav-link>
+                        @endif
                     @endauth
                     @auth
+                        @if(auth()->user()->hasPermission('cart.view'))
                         <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
                             {{ __('Giỏ hàng') }}
                         </x-nav-link>
+                        @endif
                     @endauth
                     @auth
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -152,19 +158,25 @@
                 </div>
             </div>
             @auth
+                @if(auth()->user()->hasPermission('order.own_view') || auth()->user()->hasPermission('order.detail'))
                 <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                     {{ __('Đơn hàng') }}
                 </x-responsive-nav-link>
+                @endif
             @endauth
             @auth
+                @if(auth()->user()->hasPermission('design_request.own_view'))
                 <x-responsive-nav-link :href="route('design-requests.index')" :active="request()->routeIs('design-requests.*')">
                     {{ __('Thiết kế') }}
                 </x-responsive-nav-link>
+                @endif
             @endauth
             @auth
+                @if(auth()->user()->hasPermission('cart.view'))
                 <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
                     {{ __('Giỏ hàng') }}
                 </x-responsive-nav-link>
+                @endif
             @endauth
             @auth
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">

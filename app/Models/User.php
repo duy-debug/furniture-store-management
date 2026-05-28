@@ -145,4 +145,15 @@ class User extends Authenticatable
             })
             ->exists();
     }
+
+    public function hasAnyPermission(string|array $permissionCodes): bool
+    {
+        $permissionCodes = (array) $permissionCodes;
+
+        return $this->roles()
+            ->whereHas('permissions', function ($query) use ($permissionCodes) {
+                $query->whereIn('code', $permissionCodes);
+            })
+            ->exists();
+    }
 }

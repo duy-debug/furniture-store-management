@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.active'])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
 
-    Route::middleware('permission:role.view')->group(function () {
+    Route::middleware('permission:role.view,role.create,role.update,role.delete,permission.assign')->group(function () {
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
     });
 
@@ -48,7 +48,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::put('roles/{role}/permissions', [PermissionController::class, 'update'])->name('roles.permissions.update');
     });
 
-    Route::middleware('permission:user.view')->group(function () {
+    Route::middleware('permission:user.view,user.create,user.update,user.lock')->group(function () {
         Route::get('users', [UserController::class, 'index'])->name('users.index');
     });
 
@@ -66,7 +66,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::patch('users/{user}/status', [UserController::class, 'toggleLock'])->whereNumber('user')->withTrashed()->name('users.status');
     });
 
-    Route::middleware('permission:customer.view')->group(function () {
+    Route::middleware('permission:customer.view,customer.detail,customer.lock')->group(function () {
         Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     });
 
@@ -78,7 +78,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::patch('customers/{customer}/status', [CustomerController::class, 'updateStatus'])->whereNumber('customer')->name('customers.status');
     });
 
-    Route::middleware('permission:category.view')->group(function () {
+    Route::middleware('permission:category.view,category.create,category.update,category.delete')->group(function () {
         Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
     });
 
@@ -97,7 +97,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::patch('categories/{category}/restore', [CategoryController::class, 'restore'])->withTrashed()->name('categories.restore');
     });
 
-    Route::middleware('permission:product.view')->group(function () {
+    Route::middleware('permission:product.view,product.create,product.update,product.delete,product.manage_image,product.update_stock')->group(function () {
         Route::get('products', [ProductController::class, 'index'])->name('products.index');
         Route::get('products/{product}', [ProductController::class, 'show'])->whereNumber('product')->withTrashed()->name('products.show');
     });
@@ -124,7 +124,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::delete('products/{product}/images/{image}', [ProductController::class, 'destroyImage'])->whereNumber('product')->whereNumber('image')->withTrashed()->name('products.images.destroy');
     });
 
-    Route::middleware('permission:order.view')->group(function () {
+    Route::middleware('permission:order.view,order.update_status,order.cancel')->group(function () {
         Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [OrderController::class, 'show'])->whereNumber('order')->name('orders.show');
         Route::get('orders/{order}/invoice', [OrderController::class, 'invoice'])->whereNumber('order')->name('orders.invoice');
@@ -142,7 +142,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'account.ac
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
     });
 
-    Route::middleware('permission:design_request.view')->group(function () {
+    Route::middleware('permission:design_request.view,design_request.detail,design_request.update_status')->group(function () {
         Route::get('design-requests', [DesignRequestController::class, 'index'])->name('design-requests.index');
     });
 

@@ -59,7 +59,7 @@
                     </a>
 
                     {{-- Quản lý sản phẩm --}}
-                    @if(auth()->user()->hasPermission('product.view'))
+                    @if(auth()->user()->hasAnyPermission(['product.view', 'product.create', 'product.update', 'product.delete', 'product.manage_image', 'product.update_stock']))
                     <a href="{{ Route::has('admin.products.index') ? route('admin.products.index') : '#' }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.products.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.products.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@
                     @endif
 
                     {{-- Quản lý danh mục --}}
-                    @if(auth()->user()->hasPermission('category.view'))
+                    @if(auth()->user()->hasAnyPermission(['category.view', 'category.create', 'category.update', 'category.delete']))
                     <a href="{{ Route::has('admin.categories.index') ? route('admin.categories.index') : '#' }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.categories.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.categories.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@
                     @endif
 
                     {{-- Quản lý đơn hàng --}}
-                    @if(auth()->user()->hasPermission('order.view'))
+                    @if(auth()->user()->hasAnyPermission(['order.view', 'order.update_status', 'order.cancel']))
                     <a href="{{ route('admin.orders.index') }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.orders.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.orders.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@
                     @endif
 
                     {{-- Quản lý khách hàng --}}
-                    @if(auth()->user()->hasPermission('customer.view'))
+                    @if(auth()->user()->hasAnyPermission(['customer.view', 'customer.detail', 'customer.lock']))
                     <a href="{{ Route::has('admin.customers.index') ? route('admin.customers.index') : '#' }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.customers.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.customers.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,7 +103,7 @@
                     @endif
 
                     {{-- Yêu cầu thiết kế --}}
-                    @if(auth()->user()->hasPermission('design_request.view'))
+                    @if(auth()->user()->hasAnyPermission(['design_request.view', 'design_request.detail', 'design_request.update_status']))
                     <a href="{{ Route::has('admin.design-requests.index') ? route('admin.design-requests.index') : '#' }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.design-requests.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.design-requests.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@
                     @endif
 
                     {{-- Separator --}}
-                    @if(auth()->user()->hasPermission('user.view') || auth()->user()->hasPermission('role.view') || auth()->user()->hasPermission('report.view') || auth()->user()->hasRole('admin'))
+                    @if(auth()->user()->hasAnyPermission(['user.view', 'user.create', 'user.update', 'user.lock', 'role.view', 'role.create', 'role.update', 'role.delete', 'permission.assign', 'report.view']) || auth()->user()->hasRole('admin'))
                     <div class="pt-4 mt-4 border-t border-white/10">
                         <p class="px-3 text-xs font-semibold uppercase tracking-wider text-white/50">Hệ thống</p>
                     </div>
@@ -132,7 +132,7 @@
                     @endif
 
                     {{-- Quản lý người dùng --}}
-                    @if(auth()->user()->hasPermission('user.view'))
+                    @if(auth()->user()->hasAnyPermission(['user.view', 'user.create', 'user.update', 'user.lock']))
                     <a href="{{ Route::has('admin.users.index') ? route('admin.users.index') : '#' }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.users.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.users.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +143,7 @@
                     @endif
 
                     {{-- Quản lý vai trò --}}
-                    @if(auth()->user()->hasPermission('role.view'))
+                    @if(auth()->user()->hasAnyPermission(['role.view', 'role.create', 'role.update', 'role.delete', 'permission.assign']))
                     <a href="{{ route('admin.roles.index') }}"
                        class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition {{ request()->routeIs('admin.roles.*') ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                         <svg class="h-5 w-5 {{ request()->routeIs('admin.roles.*') ? 'text-accent' : 'text-white/60' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
