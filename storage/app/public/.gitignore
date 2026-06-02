@@ -1,2 +1,8 @@
 *
-!.gitignore
+!/.gitignore
+!/categories/
+!/categories/**/
+!/categories/**/*.*
+!/products/
+!/products/**/
+!/products/**/*.*
